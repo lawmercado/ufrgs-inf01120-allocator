@@ -1,0 +1,89 @@
+package data;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import data.domain.*;
+
+public class Database {
+
+	private List<Discipline> disciplines;
+	private List<Group> groups;
+	private List<Classroom> classrooms;
+	private List<ScholarReservation> reservations;
+
+	public Database() {
+		this.disciplines = new ArrayList<Discipline>();
+		this.groups = new ArrayList<Group>();
+		this.classrooms = new ArrayList<Classroom>();
+		this.reservations = new ArrayList<ScholarReservation>();
+	}
+
+	public void addDiscipline(Discipline discipline) {
+		this.disciplines.add(discipline);
+	}
+
+	public Discipline getDiscipline(String disciplineId) {
+		for (Discipline discipline : this.disciplines) {
+			if (discipline.getId().equals(disciplineId)) {
+				return discipline;
+			}
+		}
+
+		return null;
+	}
+
+	public void addGroup(Group group) {
+		this.groups.add(group);
+	}
+
+	public Group getGroup(String disciplineId, String groupId) {
+		for (Group group : this.groups) {
+			if (group.getDiscipline().getId().equals(disciplineId) && group.getId().equals(groupId)) {
+				return group;
+			}
+		}
+
+		return null;
+	}
+
+	public void save(Group group) throws Exception {
+		for (int i = 0; i < this.groups.size(); i++) {
+			Group currentGroup = this.groups.get(i);
+			
+			if (currentGroup.getId().equals(group.getId()) && currentGroup.getDiscipline().getId().equals(group.getDiscipline().getId())) {
+				this.groups.set(i, group);
+				
+				return;
+			}
+		}
+		
+		throw new Exception("There is no group with the spedified key to save!");
+	}
+
+	public void addClassroom(Classroom classroom) {
+		this.classrooms.add(classroom);
+	}
+
+	public void addScholarReservation(ScholarReservation reservation) {
+		this.reservations.add(reservation);
+	}
+
+	public List<Discipline> getDisciplines() {
+		return this.disciplines;
+	}
+
+	public List<Group> getGroups() {
+		return this.groups;
+	}
+
+	public List<Classroom> getClassrooms() {
+		return this.classrooms;
+	}
+
+	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to) {
+		return this.reservations;
+	}
+
+}
