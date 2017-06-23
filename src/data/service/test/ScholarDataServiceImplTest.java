@@ -145,4 +145,42 @@ public class ScholarDataServiceImplTest {
 		}
 	}
 	
+	@Test
+	public void testGetRelatedGroups() {
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
+
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
+		
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA", 40);
+
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
+		
+		List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId());
+		
+		assertEquals(relatedGroups.get(0).getId(), relatedGroup.getId());
+		assertEquals(relatedGroups.get(0).getDiscipline().getId(), relatedGroup.getDiscipline().getId());
+	}
+	
+	@Test
+	public void testGetRelatedGroupsWhenHasNoGroups() {
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
+
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
+		
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA 2", 40);
+
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
+		
+		List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId());
+		
+		assertEquals(relatedGroups.size(), 0);
+	}
 }

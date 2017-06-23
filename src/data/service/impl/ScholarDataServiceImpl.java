@@ -52,82 +52,12 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 				new ScholarReservation(building, room, groupId, lessonBegin, lessonDuration, from, to));
 
 	}
-
-	@Override
-	public List<Group> getRelatedGroups(String disciplineId, String groupId) {
-		Group group = this.database.getGroup(disciplineId, groupId);
-		List<Lesson> lessons = group.getLessons();
-		String commonTeacher = group.getTeacher();
-		
-		List<Group> groups = this.database.getGroups();
-		
-		List<Group> relatedGroups = new ArrayList<Group>();
-		
-		for(int i = 0; i < groups.size(); i++) {
-			Group currentGroup = groups.get(i); 
-			
-			if(currentGroup.getTeacher().equals(commonTeacher) && currentGroup.getLessons().equals(lessons)) {
-				relatedGroups.add(currentGroup);
-			}
-		}
-		
-		return relatedGroups;
-	}
-
-	@Override
-	public List<Allocable> getLessons(String disciplineId, String groupId) {
-		Group group = this.database.getGroup(disciplineId, groupId);
-		List<Lesson> lessons = group.getLessons();
-		List<Allocable> allocables = new ArrayList<Allocable>();
-		
-		for( int i = 0; i < lessons.size(); i++ ) {
-			allocables.add(lessons.get(i));
-		}
-		
-		return allocables;
-	}
-
-	@Override
-	public List<Allocable> getAvailableClassrooms(LocalTime begin, LocalDate from, LocalDate to) {
-		List<Classroom> classrooms = this.database.getClassrooms();
-		List<Allocable> availClassrooms = new ArrayList<Allocable>();
-		
-		for( int i = 0; i < classrooms.size(); i++ ) {
-			if(!this.isReserved(classrooms.get(i).getBuilding(), classrooms.get(i).getRoom(), begin, from, to)) {
-				availClassrooms.add(classrooms.get(i));
-			}
-		}
-		
-		return availClassrooms;
-	}
-
-	@Override
-	public boolean isReserved(String building, String room, LocalTime begin, LocalDate from, LocalDate to) {
-		List<ScholarReservation> reservations = this.database.getReservations(from, to);
-		
-		for(int i = 0; i < reservations.size(); i++) {
-			ScholarReservation currentReserv = reservations.get(i);
-			
-			List<Boolean> isReservedTests = new ArrayList<Boolean>();
-			isReservedTests.add(currentReserv.getBuilding().equals(building));
-			isReservedTests.add(currentReserv.getRoom().equals(room));
-			isReservedTests.add(currentReserv.getLessonBegin().equals(begin));
-			isReservedTests.add(currentReserv.getFrom().isEqual(from));
-			isReservedTests.add(currentReserv.getTo().isEqual(to));
-			
-			if(!isReservedTests.contains(false)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-
+	
 	@Override
 	public List<Discipline> getDisciplines() {
 		return this.database.getDisciplines();
 	}
-
+	
 	@Override
 	public List<Group> getGroups(String disciplineId) {
 		List<Group> disciplineGroups = new ArrayList<Group>();
@@ -145,6 +75,88 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		}
 		
 		return disciplineGroups;
+	}
+
+	@Override
+	public List<Group> getRelatedGroups(String disciplineId, String groupId) {
+		Group referenceGroup = this.database.getGroup(disciplineId, groupId);
+		List<Lesson> lessons = referenceGroup.getLessons();
+		String commonTeacher = referenceGroup.getTeacher();
+		
+		List<Group> groups = this.database.getGroups();
+		
+		List<Group> relatedGroups = new ArrayList<Group>();
+		
+		Iterator<Group> itrGroups = groups.iterator();
+		
+		while(itrGroups.hasNext()) {
+			Group currentGroup = itrGroups.next(); 
+			
+			if(!currentGroup.equals(referenceGroup)) {
+				if(currentGroup.getTeacher().equals(commonTeacher) && currentGroup.getLessons().equals(lessons)) {
+					relatedGroups.add(currentGroup);
+				}
+			}
+		}
+		
+		return relatedGroups;
+	}
+
+	@Override
+	public List<Allocable> getLessons(String disciplineId, String groupId) {
+		Group group = this.database.getGroup(disciplineId, groupId);
+		List<Lesson> lessons = group.getLessons();
+		List<Allocable> allocables = new ArrayList<Allocable>();
+		
+		Iterator<Lesson> itrLessons = lessons.iterator();
+		
+		while(itrLessons.hasNext()) {
+			allocables.add(itrLessons.next());
+		}
+		
+		return allocables;
+	}
+
+	@Override
+	public List<Allocable> getAvailableClassrooms(LocalTime begin, LocalDate from, LocalDate to) {
+		List<Classroom> classrooms = this.database.getClassrooms();
+		List<Allocable> availClassrooms = new ArrayList<Allocable>();
+		
+		Iterator<Classroom> itrClassrooms = classrooms.iterator();
+		
+		while(itrClassrooms.hasNext()) {
+			Classroom currPlace = itrClassrooms.next();
+			
+			if(!this.isReserved(currPlace.getBuilding(), currPlace.getRoom(), begin, from, to)) {
+				availClassrooms.add(currPlace);
+			}
+		}
+		
+		return availClassrooms;
+	}
+
+	@Override
+	public boolean isReserved(String building, String room, LocalTime begin, LocalDate from, LocalDate to) {
+		List<ScholarReservation> reservations = this.database.getReservations(from, to);
+		
+		Iterator<ScholarReservation> itrReservations = reservations.iterator();
+		
+		while(itrReservations.hasNext()) {
+			ScholarReservation currentReserv = itrReservations.next();
+			
+			List<Boolean> isReservedTests = new ArrayList<Boolean>();
+			isReservedTests.add(currentReserv.getBuilding().equals(building));
+			isReservedTests.add(currentReserv.getRoom().equals(room));
+			isReservedTests.add(currentReserv.getLessonBegin().equals(begin));
+			isReservedTests.add(currentReserv.getFrom().isEqual(from));
+			isReservedTests.add(currentReserv.getTo().isEqual(to));
+			
+			if(!isReservedTests.contains(false)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 }
