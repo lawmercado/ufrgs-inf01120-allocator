@@ -1,11 +1,10 @@
-package data.service;
+package data.domain;
 
-import java.util.List;
 import java.util.Map;
 
 public interface Allocable {
 
-	public List<Resource> getResources();
+	public Map<Resource, Integer> getResources();
 	public Map<String, String> getInfo();
 	
 }

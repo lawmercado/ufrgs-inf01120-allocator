@@ -1,5 +1,6 @@
 package data.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
@@ -16,6 +17,7 @@ public class Group {
 		this.id = id;
 		this.teacher = teacher;
 		this.numStudents = numStudents;
+		this.lessons = new ArrayList<Lesson>();
 	}
 	
 	public void addLesson(Lesson lesson) {

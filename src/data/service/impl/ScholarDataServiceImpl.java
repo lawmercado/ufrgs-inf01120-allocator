@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import data.Database;
 import data.domain.*;
@@ -29,11 +30,10 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	@Override
 	public void insertGroup(String disciplineId, String id, String teacher, int numStudents) {
 		this.database.addGroup(new Group(this.database.getDiscipline(disciplineId), id, teacher, numStudents));
-
 	}
 
 	@Override
-	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek, List<Resource> reqResources) throws Exception {
+	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek,  Map<Resource, Integer> reqResources) throws Exception {
 		Group group = this.database.getGroup(disciplineId, groupId);
 		group.addLesson(new Lesson(begin, duration, daysOfWeek, reqResources));
 
@@ -41,13 +41,13 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public void insertClassroom(String building, String room, List<Resource> availResources) {
+	public void insertClassroom(String building, String room, Map<Resource, Integer> availResources) {
 		this.database.addClassroom(new Classroom(building, room, availResources));
 
 	}
 
 	@Override
-	public void insertReservation(String building, String room, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to) {
+	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to) {
 		this.database.addScholarReservation(
 				new ScholarReservation(building, room, groupId, lessonBegin, lessonDuration, from, to));
 
@@ -93,7 +93,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		List<Allocable> availClassrooms = new ArrayList<Allocable>();
 		
 		for( int i = 0; i < classrooms.size(); i++ ) {
-			if(this.isReserved(classrooms.get(i).getBuilding(), classrooms.get(i).getRoom(), begin, from, to)) {
+			if(!this.isReserved(classrooms.get(i).getBuilding(), classrooms.get(i).getRoom(), begin, from, to)) {
 				availClassrooms.add(classrooms.get(i));
 			}
 		}
@@ -138,7 +138,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		while(itrGroups.hasNext()) {
 			Group currGroup = itrGroups.next();
 			
-			if(currGroup.getId().equals(disciplineId)) {
+			if(currGroup.getDiscipline().getId().equals(disciplineId)) {
 				disciplineGroups.add(currGroup);
 			}
 

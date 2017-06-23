@@ -1,26 +1,22 @@
 package data.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import data.service.Allocable;
-import data.service.Resource;
 
 public class Classroom implements Allocable {
 
 	private String building;
 	private String room;
-	private List<Resource> availResources;
+	private  Map<Resource, Integer> availResources;
 
-	public Classroom(String building, String room, List<Resource> availResources) {
+	public Classroom(String building, String room,  Map<Resource, Integer> availResources) {
 		this.building = building;
 		this.room = room;
 		this.availResources = availResources;
 	}
 
 	@Override
-	public List<Resource> getResources() {
+	public  Map<Resource, Integer> getResources() {
 		return this.availResources;
 	}
 

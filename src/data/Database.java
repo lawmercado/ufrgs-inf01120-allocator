@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import data.domain.*;
@@ -39,7 +40,11 @@ public class Database {
 	}
 
 	public Group getGroup(String disciplineId, String groupId) {
-		for (Group group : this.groups) {
+		Iterator<Group> itrGroup = this.groups.iterator();
+		
+		while(itrGroup.hasNext()) {
+			Group group = itrGroup.next();
+			
 			if (group.getDiscipline().getId().equals(disciplineId) && group.getId().equals(groupId)) {
 				return group;
 			}

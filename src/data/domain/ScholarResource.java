@@ -1,7 +1,5 @@
 package data.domain;
 
-import data.service.Resource;
-
 public enum ScholarResource implements Resource {
 	
 	LaboratorioEnsino(1),
@@ -13,7 +11,8 @@ public enum ScholarResource implements Resource {
 	EventosPalestras(7),
 	SalaDeAula(8),
 	LaboratiorEnsinoIntroducao(9),
-	Videoconferencia(10);
+	Videoconferencia(10),
+	Lugares(11);
 	
 	private int id;
 	

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Map;
 
 import data.domain.*;
 
@@ -13,11 +14,11 @@ public interface ScholarDataService {
 	
 	public void insertGroup(String disciplineId, String id, String teacher, int numStudents);
 	
-	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek, List<Resource> reqResources) throws Exception;
+	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek,  Map<Resource, Integer> reqResources) throws Exception;
 	
-	public void insertClassroom(String building, String room, List<Resource> availResources);
+	public void insertClassroom(String building, String room, Map<Resource, Integer> availResources);
 	
-	public void insertReservation(String building, String room, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to);
+	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to);
 	
 	public List<Discipline> getDisciplines();
 	
