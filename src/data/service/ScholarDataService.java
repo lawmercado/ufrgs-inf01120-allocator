@@ -26,7 +26,7 @@ public interface ScholarDataService {
 	
 	public List<Group> getGroups(String disciplineId);
 	
-	public List<Group> getRelatedGroups(String disciplineId, String groupId);
+	public List<Group> getRelatedGroups(String disciplineId, String groupId, LocalTime lessonBegin, List<DayOfWeek> lessonDaysOfWeek);
 	
 	public List<Allocable> getLessons(String disciplineId, String groupId);
 	

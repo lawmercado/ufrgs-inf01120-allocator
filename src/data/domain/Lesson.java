@@ -36,6 +36,18 @@ public class Lesson implements Allocable {
 		return properties;
 	}
 	
+	public LocalTime getBegin() {
+		return this.begin;
+	}
+
+	public LocalTime getDuration() {
+		return this.duration;
+	}
+
+	public List<DayOfWeek> getDaysOfWeek() {
+		return this.daysOfWeek;
+	}
+
 	public static LocalTime getBeginTimeFromInfo(Map<String, String> info) throws Exception {
 		String beginString = info.get("begin");
 		

@@ -84,7 +84,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public List<Group> getRelatedGroups(String disciplineId, String groupId) {
+	public List<Group> getRelatedGroups(String disciplineId, String groupId, LocalTime lessonBegin, List<DayOfWeek> lessonDaysOfWeek) {
 		Group referenceGroup = this.database.getGroup(disciplineId, groupId);
 		List<Lesson> lessons = referenceGroup.getLessons();
 		String commonTeacher = referenceGroup.getTeacher();
@@ -96,11 +96,17 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		Iterator<Group> itrGroups = groups.iterator();
 		
 		while(itrGroups.hasNext()) {
-			Group currentGroup = itrGroups.next(); 
+			Group currGroup = itrGroups.next(); 
 			
-			if(!currentGroup.equals(referenceGroup)) {
-				if(currentGroup.getTeacher().equals(commonTeacher) && currentGroup.getLessons().equals(lessons)) {
-					relatedGroups.add(currentGroup);
+			if(!currGroup.equals(referenceGroup) && currGroup.getTeacher().equals(commonTeacher)) {
+				List<Lesson> currGroupLessons = currGroup.getLessons();
+				Iterator<Lesson> itrLessons = currGroupLessons.iterator();
+				
+				while(itrLessons.hasNext()) {
+					Lesson currLesson = itrLessons.next();
+					if(currLesson.getBegin().equals(lessonBegin) && currLesson.getDaysOfWeek().equals(lessonDaysOfWeek)) {
+						relatedGroups.add(currGroup);
+					}
 				}
 			}
 		}
