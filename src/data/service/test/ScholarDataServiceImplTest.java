@@ -66,8 +66,10 @@ public class ScholarDataServiceImplTest {
 			daysOfWeek.add(DayOfWeek.THURSDAY);
 			daysOfWeek.add(DayOfWeek.TUESDAY);
 
+			this.sds.insertResource(11, "Cadeiras");
+			
 			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.Lugares, group.getNumStudents());
+			reqResources.put(this.sds.getResource(11), group.getNumStudents());
 
 			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
 			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
@@ -76,31 +78,37 @@ public class ScholarDataServiceImplTest {
 
 			assertEquals(lessons.size(), 0);
 
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 10), LocalTime.of(1, 10),
+			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
 					daysOfWeek, reqResources);
 
 			lessons = this.sds.getLessons(discipline.getId(), group.getId());
-
+						
 			assertEquals(lessons.size(), 1);
 
 		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
+			fail("Failed due to unexpected error! " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
 	public void testInsertClassroom() {
+		this.sds.insertResource(11, "Cadeiras");
+		
 		Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
-		availResources.put(ScholarResource.Lugares, 80);
+		availResources.put(this.sds.getResource(11), 80);
 		Classroom classroom = new Classroom("45425", "108", availResources);
 		
-		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 10), LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		List<DayOfWeek> lessonDaysOfWeek = new ArrayList<DayOfWeek>();
+		lessonDaysOfWeek.add(DayOfWeek.TUESDAY);
+		lessonDaysOfWeek.add(DayOfWeek.THURSDAY);
+		
+		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), lessonDaysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 		assertEquals(availClassrooms.size(), 0);
 		
 		this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
 		
-		availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 10), LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), lessonDaysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 		
 		assertEquals(availClassrooms.size(), 1);
 		
@@ -109,6 +117,8 @@ public class ScholarDataServiceImplTest {
 	@Test
 	public void testInsertReservation() {
 		try {
+			this.sds.insertResource(11, "Cadeiras");
+			
 			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
 			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
 
@@ -117,26 +127,26 @@ public class ScholarDataServiceImplTest {
 			daysOfWeek.add(DayOfWeek.TUESDAY);
 
 			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.Lugares, group.getNumStudents());
+			reqResources.put(this.sds.getResource(11), group.getNumStudents());
 
 			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
 			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
 			
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 10), LocalTime.of(1, 10),
+			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
 					daysOfWeek, reqResources);
 
 			Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
-			availResources.put(ScholarResource.Lugares, 80);
+			availResources.put(this.sds.getResource(11), 80);
 			Classroom classroom = new Classroom("45425", "108", availResources);
 			
 			this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
 			
-			List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 10), LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+			List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 			assertEquals(availClassrooms.size(), 1);
 			
-			this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 10), LocalTime.of(1, 10), LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+			this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 
-			availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 10), LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+			availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 			assertEquals(availClassrooms.size(), 0);
 			
 		} catch (Exception e) {

@@ -1,28 +1,24 @@
 package data.domain;
 
-public enum ScholarResource implements Resource {
-	
-	LaboratorioEnsino(1),
-	LaboratorioEnsinoHardware(2),
-	SomMicrofone(3),
-	Reunioes(4),
-	Apresentacoes(5),
-	TelaMotorizada(6),
-	EventosPalestras(7),
-	SalaDeAula(8),
-	LaboratiorEnsinoIntroducao(9),
-	Videoconferencia(10),
-	Lugares(11);
+public class ScholarResource implements Resource {
 	
 	private int id;
+	private String description;
 	
-	ScholarResource(int id) {
+	public ScholarResource(int id, String description) {
 		this.id = id;
+		this.description = description;
 	}
 	
 	@Override
 	public int getId() {
 		return this.id;
 	}
+
+	@Override
+	public String getDescription() {
+		return this.description;
+	}
+	
 
 }

@@ -47,10 +47,16 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to) {
+	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
 		this.database.addScholarReservation(
-				new ScholarReservation(building, room, groupId, lessonBegin, lessonDuration, from, to));
+				new ScholarReservation(building, room, groupId, lessonBegin, lessonDuration, lessonDaysOfWeek, from, to));
 
+	}
+	
+	@Override
+	public void insertResource(int id, String description) {
+		this.database.addResource(new ScholarResource(id, description));
+		
 	}
 	
 	@Override
@@ -118,7 +124,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public List<Allocable> getAvailableClassrooms(LocalTime begin, LocalDate from, LocalDate to) {
+	public List<Allocable> getAvailableClassrooms(LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
 		List<Classroom> classrooms = this.database.getClassrooms();
 		List<Allocable> availClassrooms = new ArrayList<Allocable>();
 		
@@ -127,7 +133,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		while(itrClassrooms.hasNext()) {
 			Classroom currPlace = itrClassrooms.next();
 			
-			if(!this.isReserved(currPlace.getBuilding(), currPlace.getRoom(), begin, from, to)) {
+			if(!this.isReserved(currPlace.getBuilding(), currPlace.getRoom(), lessonBegin, lessonDuration, lessonDaysOfWeek, from, to)) {
 				availClassrooms.add(currPlace);
 			}
 		}
@@ -136,7 +142,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public boolean isReserved(String building, String room, LocalTime begin, LocalDate from, LocalDate to) {
+	public boolean isReserved(String building, String room, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
 		List<ScholarReservation> reservations = this.database.getReservations(from, to);
 		
 		Iterator<ScholarReservation> itrReservations = reservations.iterator();
@@ -147,7 +153,9 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 			List<Boolean> isReservedTests = new ArrayList<Boolean>();
 			isReservedTests.add(currentReserv.getBuilding().equals(building));
 			isReservedTests.add(currentReserv.getRoom().equals(room));
-			isReservedTests.add(currentReserv.getLessonBegin().equals(begin));
+			isReservedTests.add(currentReserv.getLessonBegin().equals(lessonBegin));
+			isReservedTests.add(currentReserv.getLessonDuration().equals(lessonDuration));
+			isReservedTests.add(currentReserv.getLessonDaysOfWeek().equals(lessonDaysOfWeek));
 			isReservedTests.add(currentReserv.getFrom().isEqual(from));
 			isReservedTests.add(currentReserv.getTo().isEqual(to));
 			
@@ -157,6 +165,11 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public Resource getResource(int id) {
+		return this.database.getResource(id);
 	}
 
 }

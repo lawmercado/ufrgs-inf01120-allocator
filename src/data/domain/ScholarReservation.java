@@ -2,6 +2,8 @@ package data.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.time.DayOfWeek;
 
 public class ScholarReservation {
 	private String groupId;
@@ -9,10 +11,11 @@ public class ScholarReservation {
 	private String room;
 	private LocalTime lessonBegin;
 	private LocalTime lessonDuration;
+	private List<DayOfWeek> lessonDaysOfWeek;
 	private LocalDate from;
 	private LocalDate to;
 
-	public ScholarReservation(String building, String room, String groupId, LocalTime lessonBegin, LocalTime lessonDurationn, LocalDate from, LocalDate to) {
+	public ScholarReservation(String building, String room, String groupId, LocalTime lessonBegin, LocalTime lessonDurationn, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
 		this.groupId = groupId;
 		this.building = building;
 		this.room = room;
@@ -20,6 +23,7 @@ public class ScholarReservation {
 		this.lessonDuration = lessonDurationn;
 		this.from = from;
 		this.to = to;
+		this.lessonDaysOfWeek = lessonDaysOfWeek;
 	}
 
 	public String getGroupId() {
@@ -40,6 +44,10 @@ public class ScholarReservation {
 	
 	public LocalTime getLessonDuration() {
 		return this.lessonDuration;
+	}
+	
+	public List<DayOfWeek> getLessonDaysOfWeek() {
+		return this.lessonDaysOfWeek;
 	}
 
 	public LocalDate getFrom() {

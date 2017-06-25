@@ -7,7 +7,7 @@ public class Classroom implements Allocable {
 
 	private String building;
 	private String room;
-	private  Map<Resource, Integer> availResources;
+	private Map<Resource, Integer> availResources;
 
 	public Classroom(String building, String room,  Map<Resource, Integer> availResources) {
 		this.building = building;

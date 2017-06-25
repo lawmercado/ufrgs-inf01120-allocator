@@ -18,7 +18,9 @@ public interface ScholarDataService {
 	
 	public void insertClassroom(String building, String room, Map<Resource, Integer> availResources);
 	
-	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, LocalDate from, LocalDate to);
+	public void insertReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
+	
+	public void insertResource(int id, String description);
 	
 	public List<Discipline> getDisciplines();
 	
@@ -28,7 +30,9 @@ public interface ScholarDataService {
 	
 	public List<Allocable> getLessons(String disciplineId, String groupId);
 	
-	public List<Allocable> getAvailableClassrooms(LocalTime begin, LocalDate from, LocalDate to);
+	public List<Allocable> getAvailableClassrooms(LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
 	
-	public boolean isReserved(String building, String room, LocalTime begin, LocalDate from, LocalDate to);
+	public Resource getResource(int id);
+	
+	public boolean isReserved(String building, String room, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
 }
