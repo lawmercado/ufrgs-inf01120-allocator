@@ -1,24 +1,37 @@
 package data.domain;
 
-public class ScholarResource implements Resource {
+public enum ScholarResource implements Resource {
 	
-	private int id;
-	private String description;
+	TEACHING_LABORATORY,
+	HARDWARE_TEACHING_LABORATORY,
+	SOUND_AND_MICROPHONE,
+	MEETINGS,
+	FORMAL_PRESENTATIONS,
+	MOTORIZED_SCREEN,
+	EVENTS_AND_SPEECHES,
+	CLASSROOM,
+	INTRODUCTION_TEACHING_LAB,
+	VIDEO_CONFERENCE,
+	PLACES;
 	
-	public ScholarResource(int id, String description) {
-		this.id = id;
-		this.description = description;
+	private final int id;
+	
+	ScholarResource() {
+		this.id = ordinal();
 	}
 	
 	@Override
 	public int getId() {
 		return this.id;
 	}
-
-	@Override
-	public String getDescription() {
-		return this.description;
-	}
+	
+	public static ScholarResource fromValue(int value) throws IllegalArgumentException {
+        try {
+             return ScholarResource.values()[value];
+        } catch(ArrayIndexOutOfBoundsException e) {
+             throw new IllegalArgumentException("Unknown enum value :" + value);
+        }
+    }
 	
 
 }

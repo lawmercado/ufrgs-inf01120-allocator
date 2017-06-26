@@ -6,6 +6,7 @@ import java.util.List;
 import java.time.DayOfWeek;
 
 public class ScholarReservation {
+	private String disciplineId;
 	private String groupId;
 	private String building;
 	private String room;
@@ -15,7 +16,8 @@ public class ScholarReservation {
 	private LocalDate from;
 	private LocalDate to;
 
-	public ScholarReservation(String building, String room, String groupId, LocalTime lessonBegin, LocalTime lessonDurationn, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
+	public ScholarReservation(String building, String room, String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDurationn, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
+		this.disciplineId = disciplineId;
 		this.groupId = groupId;
 		this.building = building;
 		this.room = room;
@@ -26,6 +28,10 @@ public class ScholarReservation {
 		this.lessonDaysOfWeek = lessonDaysOfWeek;
 	}
 
+	public String getDisciplineId() {
+		return this.disciplineId;
+	}
+	
 	public String getGroupId() {
 		return this.groupId;
 	}

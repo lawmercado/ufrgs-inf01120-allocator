@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import data.util.Util;
+
 import java.time.LocalTime;
 import java.time.DayOfWeek;
 
@@ -55,10 +58,7 @@ public class Lesson implements Allocable {
 			throw new Exception("No begin information is available in the general information mapping!");
 		}
 		
-		
-		String[] beginInfo = beginString.split(":");
-		
-		return LocalTime.of(Integer.parseInt(beginInfo[0]), Integer.parseInt(beginInfo[1]));
+		return Util.getTimeFromString(beginString);
 	}
 	
 	public static LocalTime getDurationTimeFromInfo(Map<String, String> info) throws Exception {
@@ -68,9 +68,7 @@ public class Lesson implements Allocable {
 			throw new Exception("No duration information is available in the general information mapping!");
 		}
 		
-		String[] durationInfo = durationString.split(":");
-		
-		return LocalTime.of(Integer.valueOf(durationInfo[0]), Integer.valueOf(durationInfo[1]));
+		return Util.getTimeFromString(durationString);
 	}
 	
 	public static List<DayOfWeek> getDaysOfWeekFromInfo(Map<String, String> info) throws Exception {

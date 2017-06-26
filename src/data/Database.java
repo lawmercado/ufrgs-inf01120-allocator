@@ -13,14 +13,12 @@ public class Database {
 	private List<Group> groups;
 	private List<Classroom> classrooms;
 	private List<ScholarReservation> reservations;
-	private List<Resource> resources;
 
 	public Database() {
 		this.disciplines = new ArrayList<Discipline>();
 		this.groups = new ArrayList<Group>();
 		this.classrooms = new ArrayList<Classroom>();
 		this.reservations = new ArrayList<ScholarReservation>();
-		this.resources = new ArrayList<Resource>();
 	}
 
 	public void addDiscipline(Discipline discipline) {
@@ -76,10 +74,6 @@ public class Database {
 	public void addScholarReservation(ScholarReservation reservation) {
 		this.reservations.add(reservation);
 	}
-
-	public void addResource(Resource resource) {
-		this.resources.add(resource);
-	}
 	
 	public List<Discipline> getDisciplines() {
 		return this.disciplines;
@@ -93,34 +87,6 @@ public class Database {
 		return this.classrooms;
 	}
 
-	public Resource getResource(int id) {
-		Iterator<Resource> itrResources = this.resources.iterator();
-		
-		while(itrResources.hasNext()) {
-			Resource resource = itrResources.next();
-			
-			if(resource.getId() == id) {
-				return resource;
-			}
-		}
-		
-		return null;
-	}
-	
-	public Resource getResource(String description) {
-		Iterator<Resource> itrResources = this.resources.iterator();
-		
-		while(itrResources.hasNext()) {
-			Resource resource = itrResources.next();
-			
-			if(resource.getDescription().equals(description)) {
-				return resource;
-			}
-		}
-		
-		return null;
-	}
-	
 	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to) {
 		return this.reservations;
 	}
