@@ -86,7 +86,6 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	@Override
 	public List<Group> getRelatedGroups(String disciplineId, String groupId, LocalTime lessonBegin, List<DayOfWeek> lessonDaysOfWeek) {
 		Group referenceGroup = this.database.getGroup(disciplineId, groupId);
-		List<Lesson> lessons = referenceGroup.getLessons();
 		String commonTeacher = referenceGroup.getTeacher();
 		
 		List<Group> groups = this.database.getGroups();

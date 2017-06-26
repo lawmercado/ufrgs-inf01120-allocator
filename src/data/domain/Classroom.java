@@ -36,5 +36,25 @@ public class Classroom implements Allocable {
 	public String getRoom() {
 		return this.room;
 	}
+	
+	public static String getBuildingFromInfo(Map<String, String> info) throws Exception {
+		String buildingString = info.get("building");
+		
+		if(buildingString.equals(null)) {
+			throw new Exception("No begin information is available in the general information mapping!");
+		}
+		
+		return buildingString;
+	}
+	
+	public static String getRoomFromInfo(Map<String, String> info) throws Exception {
+		String roomString = info.get("room");
+		
+		if(roomString.equals(null)) {
+			throw new Exception("No begin information is available in the general information mapping!");
+		}
+		
+		return roomString;
+	}
 
 }
