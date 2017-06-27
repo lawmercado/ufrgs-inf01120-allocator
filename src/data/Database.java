@@ -11,6 +11,7 @@ public class Database {
 
 	private List<Discipline> disciplines;
 	private List<Group> groups;
+	private List<Lesson> lessons;
 	private List<Classroom> classrooms;
 	private List<ScholarReservation> reservations;
 
@@ -19,12 +20,29 @@ public class Database {
 		this.groups = new ArrayList<Group>();
 		this.classrooms = new ArrayList<Classroom>();
 		this.reservations = new ArrayList<ScholarReservation>();
+		this.lessons = new ArrayList<Lesson>();
 	}
 
-	public void addDiscipline(Discipline discipline) {
+	public void insert(Discipline discipline) {
 		this.disciplines.add(discipline);
 	}
 
+	public void insert(Group group) {
+		this.groups.add(group);
+	}
+
+	public void insert(Lesson lesson) {
+		this.lessons.add(lesson);
+	}
+
+	public void insert(Classroom classroom) {
+		this.classrooms.add(classroom);
+	}
+
+	public void insert(ScholarReservation reservation) {
+		this.reservations.add(reservation);
+	}
+	
 	public Discipline getDiscipline(String disciplineId) {
 		for (Discipline discipline : this.disciplines) {
 			if (discipline.getId().equals(disciplineId)) {
@@ -34,9 +52,9 @@ public class Database {
 
 		return null;
 	}
-
-	public void addGroup(Group group) {
-		this.groups.add(group);
+	
+	public List<Discipline> listDisciplines() {
+		return this.disciplines;
 	}
 
 	public Group getGroup(String disciplineId, String groupId) {
@@ -52,42 +70,47 @@ public class Database {
 
 		return null;
 	}
-
-	public void save(Group group) throws Exception {
-		for (int i = 0; i < this.groups.size(); i++) {
-			Group currentGroup = this.groups.get(i);
-			
-			if (currentGroup.getId().equals(group.getId()) && currentGroup.getDiscipline().getId().equals(group.getDiscipline().getId())) {
-				this.groups.set(i, group);
-				
-				return;
-			}
-		}
-		
-		throw new Exception("There is no group with the spedified key to save!");
-	}
-
-	public void addClassroom(Classroom classroom) {
-		this.classrooms.add(classroom);
-	}
-
-	public void addScholarReservation(ScholarReservation reservation) {
-		this.reservations.add(reservation);
-	}
 	
-	public List<Discipline> getDisciplines() {
-		return this.disciplines;
-	}
-
-	public List<Group> getGroups() {
+	public List<Group> listGroups() {
 		return this.groups;
 	}
+	
+	public List<Group> listGroups(String disciplineId) {
+		List<Group> groups = new ArrayList<Group>();
+		Iterator<Group> itrGroups = this.groups.iterator();
+		
+		while(itrGroups.hasNext()) {
+			Group group = itrGroups.next();
+			
+			if (group.getDiscipline().getId().equals(disciplineId)) {
+				groups.add(group);
+			}
+		}
 
-	public List<Classroom> getClassrooms() {
+		return groups;
+	}
+	
+	public List<Lesson> listLessons(String disciplineId, String groupId) {
+		List<Lesson> lessons = new ArrayList<Lesson>();
+		Iterator<Lesson> itrLessons = this.lessons.iterator();
+		
+		while(itrLessons.hasNext()) {
+			Lesson lesson = itrLessons.next();
+			Group group = lesson.getGroup();
+			
+			if (group.getDiscipline().getId().equals(disciplineId) && group.getId().equals(groupId)) {
+				lessons.add(lesson);
+			}
+		}
+
+		return lessons;
+	}
+
+	public List<Classroom> listClassrooms() {
 		return this.classrooms;
 	}
 
-	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to) {
+	public List<ScholarReservation> listReservations(LocalDate from, LocalDate to) {
 		return this.reservations;
 	}
 

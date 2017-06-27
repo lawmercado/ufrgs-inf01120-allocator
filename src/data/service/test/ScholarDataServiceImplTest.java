@@ -58,35 +58,30 @@ public class ScholarDataServiceImplTest {
 	
 	@Test
 	public void testInsertLesson() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
 
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
 
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
 
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
 
-			List<Allocable> lessons = this.sds.getLessons(discipline.getId(), group.getId());
+		List<Allocable> lessons = this.sds.getLessons(discipline.getId(), group.getId());
 
-			assertEquals(lessons.size(), 0);
+		assertEquals(lessons.size(), 0);
 
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, reqResources);
+		this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, reqResources);
 
-			lessons = this.sds.getLessons(discipline.getId(), group.getId());
-						
-			assertEquals(lessons.size(), 1);
+		lessons = this.sds.getLessons(discipline.getId(), group.getId());
+					
+		assertEquals(lessons.size(), 1);
 
-		} catch (Exception e) {
-			fail("Failed due to unexpected error! " + e.getMessage());
-			e.printStackTrace();
-		}
 	}
 	
 	@Test
@@ -112,192 +107,164 @@ public class ScholarDataServiceImplTest {
 	
 	@Test
 	public void testInsertReservation() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
 
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
 
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
 
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
-			
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, reqResources);
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, reqResources);
 
-			Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
-			availResources.put(ScholarResource.PLACES, 80);
-			Classroom classroom = new Classroom("45425", "108", availResources);
-			
-			this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
-			
-			List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			assertEquals(availClassrooms.size(), 1);
-			
-			this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
+		availResources.put(ScholarResource.PLACES, 80);
+		Classroom classroom = new Classroom("45425", "108", availResources);
+		
+		this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
+		
+		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		assertEquals(availClassrooms.size(), 1);
+		
+		this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 
-			availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			assertEquals(availClassrooms.size(), 0);
-			
-		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
-			e.printStackTrace();
-		}
+		availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		assertEquals(availClassrooms.size(), 0);
 	}
 	
 	@Test
 	public void testLessonHasReservation() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
 
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
 
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
 
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
-			
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, reqResources);
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, reqResources);
 
-			Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
-			availResources.put(ScholarResource.PLACES, 80);
-			Classroom classroom = new Classroom("45425", "108", availResources);
-			
-			this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
-			
-			List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			assertEquals(availClassrooms.size(), 1);
-			
-			this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
+		availResources.put(ScholarResource.PLACES, 80);
+		Classroom classroom = new Classroom("45425", "108", availResources);
+		
+		this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
+		
+		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		assertEquals(availClassrooms.size(), 1);
+		
+		this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 
-			boolean lessonHasReservation = this.sds.lessonHasReservation(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			
-			assertEquals(lessonHasReservation, true);
-			
-		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
-			e.printStackTrace();
-		}
+		boolean lessonHasReservation = this.sds.lessonHasReservation(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		
+		assertEquals(lessonHasReservation, true);
 	}
 	
 	@Test
 	public void testLessonHasReservationFalse() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
 
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
 
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
 
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
-			
-			this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, reqResources);
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, reqResources);
 
-			Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
-			availResources.put(ScholarResource.PLACES, 80);
-			Classroom classroom = new Classroom("45425", "108", availResources);
-			
-			this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
-			
-			List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			assertEquals(availClassrooms.size(), 1);
-			
-			boolean lessonHasReservation = this.sds.lessonHasReservation(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
-					daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
-			
-			assertEquals(lessonHasReservation, false);
-			
-		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
-			e.printStackTrace();
-		}
+		Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
+		availResources.put(ScholarResource.PLACES, 80);
+		Classroom classroom = new Classroom("45425", "108", availResources);
+		
+		this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
+		
+		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		assertEquals(availClassrooms.size(), 1);
+		
+		boolean lessonHasReservation = this.sds.lessonHasReservation(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		
+		assertEquals(lessonHasReservation, false);
 	}
 	
 	@Test
 	public void testGetRelatedGroups() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
-	
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
-			
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
-			Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA", 40);
-			
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
-	
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
-			
-			Lesson lesson = new Lesson(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, reqResources);
-			
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
-			this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
-			
-			this.sds.insertLesson(discipline.getId(), group.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
-			this.sds.insertLesson(discipline2.getId(), relatedGroup.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
-			
-			List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId(), lesson.getBegin(), lesson.getDaysOfWeek());
-			
-			assertEquals(relatedGroups.get(0).getId(), relatedGroup.getId());
-			assertEquals(relatedGroups.get(0).getDiscipline().getId(), relatedGroup.getDiscipline().getId());
-		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
-			e.printStackTrace();
-		}
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
+
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
+		
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA", 40);
+		
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
+
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		
+		Lesson lesson = new Lesson(group, LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, reqResources);
+		
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
+		this.sds.insertLesson(discipline2.getId(), relatedGroup.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
+		
+		List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId(), lesson.getBegin(), lesson.getDaysOfWeek());
+		
+		assertEquals(relatedGroups.get(0).getId(), relatedGroup.getId());
+		assertEquals(relatedGroups.get(0).getDiscipline().getId(), relatedGroup.getDiscipline().getId());
 	}
 	
 	@Test
 	public void testGetRelatedGroupsWhenHasNoGroups() {
-		try {
-			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
-			Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
-	
-			this.sds.insertDiscipline(discipline.getId(), discipline.getName());
-			this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
-			
-			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
-			Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA 2", 40);
-	
-			this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
-			this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
-			
-			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-			daysOfWeek.add(DayOfWeek.THURSDAY);
-			daysOfWeek.add(DayOfWeek.TUESDAY);
-	
-			Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
-			reqResources.put(ScholarResource.PLACES, group.getNumStudents());
-			
-			Lesson lesson = new Lesson(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, reqResources);
-			
-			this.sds.insertLesson(discipline.getId(), group.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
-			
-			List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId(), lesson.getBegin(), lesson.getDaysOfWeek());
-			
-			assertEquals(relatedGroups.size(), 0);
-		} catch (Exception e) {
-			fail("Failed due to unexpected error!");
-			e.printStackTrace();
-		}
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Discipline discipline2 = new Discipline("INF01121", "Técnicas de Construção de Programas 2");
+
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertDiscipline(discipline2.getId(), discipline2.getName());
+		
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+		Group relatedGroup = new Group(discipline2, "B", "ÉRIKA COTA 2", 40);
+
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		this.sds.insertGroup(discipline2.getId(), relatedGroup.getId(), relatedGroup.getTeacher(), relatedGroup.getNumStudents());
+		
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
+
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+		
+		Lesson lesson = new Lesson(group, LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, reqResources);
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
+		
+		List<Group> relatedGroups = this.sds.getRelatedGroups(group.getDiscipline().getId(), group.getId(), lesson.getBegin(), lesson.getDaysOfWeek());
+		
+		assertEquals(relatedGroups.size(), 0);
 	}
 }

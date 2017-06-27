@@ -1,15 +1,11 @@
 package data.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Group {
 	
 	private Discipline discipline;
 	private String id;
 	private String teacher;
 	private int numStudents;
-	private List<Lesson> lessons;
 	
 	public Group(Discipline discipline, String id, String teacher, int numStudents)
 	{
@@ -17,11 +13,6 @@ public class Group {
 		this.id = id;
 		this.teacher = teacher;
 		this.numStudents = numStudents;
-		this.lessons = new ArrayList<Lesson>();
-	}
-	
-	public void addLesson(Lesson lesson) {
-		this.lessons.add(lesson);
 	}
 	
 	public Discipline getDiscipline() {
@@ -38,10 +29,6 @@ public class Group {
 
 	public int getNumStudents() {
 		return this.numStudents;
-	}
-
-	public List<Lesson> getLessons() {
-		return this.lessons;
 	}
 
 }

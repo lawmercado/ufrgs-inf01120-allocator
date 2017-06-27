@@ -10,12 +10,14 @@ import java.time.DayOfWeek;
 
 public class Lesson implements Allocable {
 	
+	private Group group;
 	private LocalTime begin;
 	private LocalTime duration;
 	private List<DayOfWeek> daysOfWeek;
 	private Map<Resource, Integer> reqResources;
 	
-	public Lesson(LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek, Map<Resource, Integer> reqResources) {
+	public Lesson(Group group, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek, Map<Resource, Integer> reqResources) {
+		this.group = group;
 		this.begin = begin;
 		this.duration = duration;
 		this.daysOfWeek = daysOfWeek;
@@ -35,6 +37,10 @@ public class Lesson implements Allocable {
 		properties.put("daysOfWeek", this.daysOfWeek.toString());
 				
 		return properties;
+	}
+	
+	public Group getGroup() {
+		return this.group;
 	}
 	
 	public LocalTime getBegin() {

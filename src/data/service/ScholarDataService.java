@@ -14,7 +14,7 @@ public interface ScholarDataService {
 	
 	public void insertGroup(String disciplineId, String id, String teacher, int numStudents);
 	
-	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek,  Map<Resource, Integer> reqResources) throws Exception;
+	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration, List<DayOfWeek> daysOfWeek,  Map<Resource, Integer> reqResources);
 	
 	public void insertClassroom(String building, String room, Map<Resource, Integer> availResources);
 	

@@ -17,13 +17,16 @@ public class DomainTest {
 	@Test
 	public void testGetInfoFromAllocableLesson() {
 		try {
+			Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+			Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+			
 			LocalTime begin = LocalTime.parse("10:30");
 			LocalTime duration = LocalTime.parse("01:40");
 			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
 			daysOfWeek.add(DayOfWeek.MONDAY);
 			daysOfWeek.add(DayOfWeek.WEDNESDAY);
 			
-			Allocable lesson = new Lesson(begin, duration, daysOfWeek, new HashMap<Resource, Integer>());
+			Allocable lesson = new Lesson(group, begin, duration, daysOfWeek, new HashMap<Resource, Integer>());
 			
 			
 			assertTrue(begin.equals(Lesson.getBeginTimeFromAllocable(lesson)));
