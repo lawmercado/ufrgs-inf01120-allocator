@@ -1,6 +1,7 @@
 package data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -90,6 +91,22 @@ public class Database {
 		return groups;
 	}
 	
+	public Lesson getLesson(String disciplineId, String groupId, LocalTime begin) {
+		List<Lesson> lessons = this.listLessons(disciplineId, groupId);
+		
+		Iterator<Lesson> itrLesson = lessons.iterator();
+		
+		while(itrLesson.hasNext()) {
+			Lesson lesson = itrLesson.next();
+			
+			if(lesson.getBegin().equals(begin)) {
+				return lesson;
+			}
+		}
+		
+		return null;
+	}
+	
 	public List<Lesson> listLessons(String disciplineId, String groupId) {
 		List<Lesson> lessons = new ArrayList<Lesson>();
 		Iterator<Lesson> itrLessons = this.lessons.iterator();
@@ -106,6 +123,20 @@ public class Database {
 		return lessons;
 	}
 
+	public Classroom getClassroom(String building, String room) {
+		Iterator<Classroom> itrClassroom = this.classrooms.iterator();
+		
+		while(itrClassroom.hasNext()) {
+			Classroom classroom = itrClassroom.next();
+			
+			if (classroom.getBuilding().equals(building) && classroom.getRoom().equals(room)) {
+				return classroom;
+			}
+		}
+
+		return null;
+	}
+	
 	public List<Classroom> listClassrooms() {
 		return this.classrooms;
 	}

@@ -51,8 +51,10 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	public void insertReservation(String building, String room, String disciplineId, String groupId,
 			LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from,
 			LocalDate to) {
-		this.database.insert(new ScholarReservation(building, room, disciplineId, groupId, lessonBegin,
-				lessonDuration, lessonDaysOfWeek, from, to));
+		
+		Classroom classroom = this.database.getClassroom(building, room);
+		Lesson lesson = this.database.getLesson(disciplineId, groupId, lessonBegin);
+		this.database.insert(new ScholarReservation(classroom, lesson, from, to));
 
 	}
 
@@ -143,11 +145,11 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 			ScholarReservation currentReserv = itrReservations.next();
 
 			List<Boolean> isReservedTests = new ArrayList<Boolean>();
-			isReservedTests.add(currentReserv.getBuilding().equals(building));
-			isReservedTests.add(currentReserv.getRoom().equals(room));
-			isReservedTests.add(currentReserv.getLessonBegin().equals(lessonBegin));
-			isReservedTests.add(currentReserv.getLessonDuration().equals(lessonDuration));
-			isReservedTests.add(currentReserv.getLessonDaysOfWeek().equals(lessonDaysOfWeek));
+			isReservedTests.add(currentReserv.getClassroom().getBuilding().equals(building));
+			isReservedTests.add(currentReserv.getClassroom().getRoom().equals(room));
+			isReservedTests.add(currentReserv.getLesson().getBegin().equals(lessonBegin));
+			isReservedTests.add(currentReserv.getLesson().getDuration().equals(lessonDuration));
+			isReservedTests.add(currentReserv.getLesson().getDaysOfWeek().equals(lessonDaysOfWeek));
 			isReservedTests.add(currentReserv.getFrom().isEqual(from));
 			isReservedTests.add(currentReserv.getTo().isEqual(to));
 
@@ -171,12 +173,11 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 			ScholarReservation currentReserv = itrReservations.next();
 
 			List<Boolean> isReservedTests = new ArrayList<Boolean>();
-			isReservedTests.add(currentReserv.getDisciplineId().equals(disciplineId));
-			isReservedTests.add(currentReserv.getGroupId().equals(groupId));
-			isReservedTests.add(currentReserv.getLessonBegin().equals(lessonBegin));
-			isReservedTests.add(currentReserv.getLessonBegin().equals(lessonBegin));
-			isReservedTests.add(currentReserv.getLessonDuration().equals(lessonDuration));
-			isReservedTests.add(currentReserv.getLessonDaysOfWeek().equals(lessonDaysOfWeek));
+			isReservedTests.add(currentReserv.getLesson().getGroup().getDiscipline().getId().equals(disciplineId));
+			isReservedTests.add(currentReserv.getLesson().getGroup().getId().equals(groupId));
+			isReservedTests.add(currentReserv.getLesson().getBegin().equals(lessonBegin));
+			isReservedTests.add(currentReserv.getLesson().getDuration().equals(lessonDuration));
+			isReservedTests.add(currentReserv.getLesson().getDaysOfWeek().equals(lessonDaysOfWeek));
 			isReservedTests.add(currentReserv.getFrom().isEqual(from));
 			isReservedTests.add(currentReserv.getTo().isEqual(to));
 
