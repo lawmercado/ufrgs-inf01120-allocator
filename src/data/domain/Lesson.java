@@ -5,13 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import data.util.Util;
-
 import java.time.LocalTime;
 import java.time.DayOfWeek;
 
 public class Lesson implements Allocable {
-
+	
 	private LocalTime begin;
 	private LocalTime duration;
 	private List<DayOfWeek> daysOfWeek;
@@ -51,44 +49,50 @@ public class Lesson implements Allocable {
 		return this.daysOfWeek;
 	}
 
-	public static LocalTime getBeginTimeFromInfo(Map<String, String> info) throws Exception {
-		String beginString = info.get("begin");
+	public static LocalTime getBeginTimeFromAllocable(Allocable allocable) throws Exception {
+		Map<String, String> info = allocable.getInfo(); 
 		
-		if(beginString.equals(null)) {
-			throw new Exception("No begin information is available in the general information mapping!");
+		if(info.containsKey("begin")) {
+			String beginString = info.get("begin");
+			
+			return LocalTime.parse(beginString);
 		}
 		
-		return Util.getTimeFromString(beginString);
+		throw new Exception("No begin information is available in the Allocable type object!");
 	}
 	
-	public static LocalTime getDurationTimeFromInfo(Map<String, String> info) throws Exception {
-		String durationString = info.get("duration");
+	public static LocalTime getDurationTimeFromAllocable(Allocable allocable) throws Exception {
+		Map<String, String> info = allocable.getInfo();
 		
-		if(durationString.equals(null)) {
-			throw new Exception("No duration information is available in the general information mapping!");
+		if(info.containsKey("duration")) {
+			String durationString = info.get("duration");
+			
+			return LocalTime.parse(durationString);
 		}
 		
-		return Util.getTimeFromString(durationString);
+		throw new Exception("No duration information is available in the Allocable type object!");
 	}
 	
-	public static List<DayOfWeek> getDaysOfWeekFromInfo(Map<String, String> info) throws Exception {
-		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+	public static List<DayOfWeek> getDaysOfWeekFromAllocable(Allocable allocable) throws Exception {
+		Map<String, String> info = allocable.getInfo();
 		
-		String dowString = info.get("daysOfWeek");
-		
-		if(dowString.equals(null)) {
-			throw new Exception("No daysOfWeek information is available in the general information mapping!");
+		if(info.containsKey("daysOfWeek")) {
+			List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+			
+			String dowString = info.get("daysOfWeek");
+			
+			dowString = dowString.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "");
+			
+			String[] dowStringInfo = dowString.split(",");
+			
+			for(int i = 0; i < dowStringInfo.length; i++) {
+				daysOfWeek.add(DayOfWeek.valueOf(dowStringInfo[i]));
+			}
+			
+			return daysOfWeek;
 		}
 		
-		dowString = dowString.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "");
-		
-		String[] dowStringInfo = dowString.split(",");
-		
-		for(int i = 0; i < dowStringInfo.length; i++) {
-			daysOfWeek.add(DayOfWeek.valueOf(dowStringInfo[i]));
-		}
-		
-		return daysOfWeek;
+		throw new Exception("No daysOfWeek information is available in the Allocable type object!");
 	}
 	
 }
