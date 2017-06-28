@@ -1,4 +1,4 @@
-package service.io;
+package service;
 
 import data.service.ScholarDataService;
 
