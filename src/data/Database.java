@@ -142,7 +142,19 @@ public class Database {
 	}
 
 	public List<ScholarReservation> listReservations(LocalDate from, LocalDate to) {
-		return this.reservations;
+		List<ScholarReservation> periodReservations = new ArrayList<ScholarReservation>();
+		Iterator<ScholarReservation> reservations = this.reservations.iterator();
+		
+		while(reservations.hasNext()) {
+			ScholarReservation currReservation = reservations.next();
+			
+			if(currReservation.getFrom().equals(from) && currReservation.getTo().equals(to)) {
+				periodReservations.add(currReservation);
+			}
+		}
+		
+		return periodReservations;
 	}
+	
 
 }

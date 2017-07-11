@@ -189,4 +189,9 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 		return false;
 	}
 
+	@Override
+	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to) {
+		return this.database.listReservations(from, to);
+	}
+
 }
