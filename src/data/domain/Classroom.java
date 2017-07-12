@@ -37,24 +37,24 @@ public class Classroom implements Allocable {
 		return this.room;
 	}
 	
-	public static String getBuildingFromAllocable(Allocable allocable) throws Exception {
+	public static String getBuildingFromAllocable(Allocable allocable) throws IllegalArgumentException {
 		Map<String, String> info = allocable.getInfo();
 		
 		if(info.containsKey("building")) {
 			return info.get("building");
 		}
 		
-		throw new Exception("No building information is available in the Allocable type object!");
+		throw new IllegalArgumentException("No building information is available in the Allocable type object!");
 	}
 	
-	public static String getRoomFromAllocable(Allocable allocable) throws Exception {
+	public static String getRoomFromAllocable(Allocable allocable) throws IllegalArgumentException {
 		Map<String, String> info = allocable.getInfo();
 		
 		if(info.containsKey("room")) {
 			return info.get("room");
 		}
 		
-		throw new Exception("No room information is available in the Allocable type object!");
+		throw new IllegalArgumentException("No room information is available in the Allocable type object!");
 	}
 
 }

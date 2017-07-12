@@ -35,6 +35,8 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	@Override
 	public void insertLesson(String disciplineId, String groupId, LocalTime begin, LocalTime duration,
 			List<DayOfWeek> daysOfWeek, Map<Resource, Integer> reqResources) {
+		
+		
 		Group group = this.database.getGroup(disciplineId, groupId);
 		
 		this.database.insert(new Lesson(group, begin, duration, daysOfWeek, reqResources));

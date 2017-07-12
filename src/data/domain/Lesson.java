@@ -55,7 +55,7 @@ public class Lesson implements Allocable {
 		return this.daysOfWeek;
 	}
 
-	public static LocalTime getBeginTimeFromAllocable(Allocable allocable) throws Exception {
+	public static LocalTime getBeginTimeFromAllocable(Allocable allocable) throws IllegalArgumentException {
 		Map<String, String> info = allocable.getInfo(); 
 		
 		if(info.containsKey("begin")) {
@@ -64,10 +64,10 @@ public class Lesson implements Allocable {
 			return LocalTime.parse(beginString);
 		}
 		
-		throw new Exception("No begin information is available in the Allocable type object!");
+		throw new IllegalArgumentException("No begin information is available in the Allocable type object!");
 	}
 	
-	public static LocalTime getDurationTimeFromAllocable(Allocable allocable) throws Exception {
+	public static LocalTime getDurationTimeFromAllocable(Allocable allocable) throws IllegalArgumentException {
 		Map<String, String> info = allocable.getInfo();
 		
 		if(info.containsKey("duration")) {
@@ -76,10 +76,10 @@ public class Lesson implements Allocable {
 			return LocalTime.parse(durationString);
 		}
 		
-		throw new Exception("No duration information is available in the Allocable type object!");
+		throw new IllegalArgumentException("No duration information is available in the Allocable type object!");
 	}
 	
-	public static List<DayOfWeek> getDaysOfWeekFromAllocable(Allocable allocable) throws Exception {
+	public static List<DayOfWeek> getDaysOfWeekFromAllocable(Allocable allocable) throws IllegalArgumentException {
 		Map<String, String> info = allocable.getInfo();
 		
 		if(info.containsKey("daysOfWeek")) {
@@ -98,7 +98,7 @@ public class Lesson implements Allocable {
 			return daysOfWeek;
 		}
 		
-		throw new Exception("No daysOfWeek information is available in the Allocable type object!");
+		throw new IllegalArgumentException("No daysOfWeek information is available in the Allocable type object!");
 	}
 	
 }

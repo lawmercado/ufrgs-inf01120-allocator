@@ -2,6 +2,7 @@ package data.domain;
 
 public enum ScholarResource implements Resource {
 	
+	PLACES,
 	TEACHING_LABORATORY,
 	HARDWARE_TEACHING_LABORATORY,
 	SOUND_AND_MICROPHONE,
@@ -11,8 +12,7 @@ public enum ScholarResource implements Resource {
 	EVENTS_AND_SPEECHES,
 	CLASSROOM,
 	INTRODUCTION_TEACHING_LAB,
-	VIDEO_CONFERENCE,
-	PLACES;
+	VIDEO_CONFERENCE;
 	
 	private final int id;
 	

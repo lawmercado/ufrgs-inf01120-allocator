@@ -1,4 +1,4 @@
-package service.io;
+package service.io.excel;
 
 import data.service.ScholarDataService;
 import data.domain.*;
@@ -24,16 +24,19 @@ public class ExcelIOService implements FileIOService {
 
 	private final int SHEET_OF_DEMANDS_INDEX = 0;
 	private final int SHEET_OF_CLASSROOMS_INDEX = 2;
+	
 	private final int DEFAULT_RESOURCE_QUANTITY = 1;
+	private final int DEFAULT_DURATION_TIME = 120;
 	
 	private ScholarDataService sds;
 	
 	@Override
-	public void populateFromFile(ScholarDataService sds, String filePath) {
+	public void populateFromFile(ScholarDataService sds, String filePath) throws FileNotFoundException {
 		this.sds = sds;
 		
+		FileInputStream excelFile = new FileInputStream(new File(filePath));
+		
 		try {
-			FileInputStream excelFile = new FileInputStream(new File(filePath));
 			Workbook workbook = new XSSFWorkbook(excelFile);
 	        
 	        this.populateDemandsFromWorkbook(workbook);
@@ -42,12 +45,8 @@ public class ExcelIOService implements FileIOService {
 			
 	        workbook.close();
 	        
-	    } catch (FileNotFoundException e) {
-	        e.printStackTrace();
 	    } catch (IOException e) {
 	        e.printStackTrace();
-	    } catch (Exception e) {
-	    	e.printStackTrace();
 	    }
 	}
 
@@ -121,7 +120,19 @@ public class ExcelIOService implements FileIOService {
         while(itrGroups.hasNext()) {
         	Discipline discipline = itrGroups.next().getDiscipline();
         	
-        	if(!disciplines.contains(discipline)) {
+        	Iterator<Discipline> itrDisciplines = disciplines.iterator();
+        	
+        	boolean disciplineFound = false;
+        	
+        	while(itrDisciplines.hasNext()) {
+        		Discipline searchedDiscipline = itrDisciplines.next(); 
+        		
+        		if(searchedDiscipline.getId().equals(discipline.getId())) {
+        			disciplineFound = true;
+        		}
+        	}
+        	
+        	if(!disciplineFound) {
         		disciplines.add(discipline);
         	}
         }
@@ -138,48 +149,81 @@ public class ExcelIOService implements FileIOService {
         
         Iterator<Row> itrDemands = sheet.iterator();
         
-        while (itrDemands.hasNext()) {
-        	currLesson = this.getLessonFromRow(itrDemands.next());
-            
-            if(!similarLessons.isEmpty()) {
-            	if(isSameLesson(currLesson, similarLessons.get(similarLessons.size() - 1))) {
-            		similarLessons.add(currLesson);
-            		
-            	} else {
-            		lessons.add(this.mergeSimilarLessons(similarLessons));
-            		
-            		similarLessons.clear();
-            		similarLessons.add(currLesson);
-            	}
-            	
-            } else {
-            	similarLessons.add(currLesson);
-            }
-
-        }
+        // Jump the line of the column labels
+ 		if(itrDemands.hasNext()) {
+ 			itrDemands.next();
+ 		}
         
+ 		while (itrDemands.hasNext()) {
+ 			Row row = itrDemands.next();
+ 			
+ 			String disciplineId = row.getCell(CellInfoDemand.ID.ordinal()).getStringCellValue().trim();
+ 			
+ 			if(!disciplineId.isEmpty()) {
+ 				currLesson = this.getLessonFromRow(row);
+	            
+	            if(!similarLessons.isEmpty()) {
+	            	if(!isSameLesson(currLesson, similarLessons.get(similarLessons.size() - 1))) {
+	            		lessons.add(this.mergeSimilarLessons(similarLessons));
+	            		
+	            		similarLessons.clear();
+	            	}
+	            	
+	            }
+	            
+	            similarLessons.add(currLesson);
+ 			}
+        }
+ 		
+ 		// In case that similarLessons contains valid lessons
+ 		if(!similarLessons.isEmpty()) {
+ 			lessons.add(this.mergeSimilarLessons(similarLessons));
+ 			similarLessons.clear();
+ 		}
+ 		
         return lessons;
 	}
 	
 	private Lesson getLessonFromRow(Row row) {
-		String disciplineId = row.getCell(CellInfoDemand.ID.ordinal()).getStringCellValue();
+		String disciplineId = row.getCell(CellInfoDemand.ID.ordinal()).getStringCellValue().trim();
 		
-		String disciplineName = row.getCell(CellInfoDemand.NAME.ordinal()).getStringCellValue();
+		String disciplineName = row.getCell(CellInfoDemand.NAME.ordinal()).getStringCellValue().trim();
         
-        String groupId = row.getCell(CellInfoDemand.ID2.ordinal()).getStringCellValue();
+        String groupId = row.getCell(CellInfoDemand.ID2.ordinal()).getStringCellValue().trim();
         
-        String groupTeacher = row.getCell(CellInfoDemand.TEACHER.ordinal()).getStringCellValue();
+        String groupTeacher = row.getCell(CellInfoDemand.TEACHER.ordinal()).getStringCellValue().trim();
         
-        int groupNumStudents = (int) row.getCell(CellInfoDemand.NUM_OF_SUDENTS.ordinal()).getNumericCellValue();
+        int groupNumStudents = (int) row.getCell(CellInfoDemand.NUMBER_OF_STUDENTS.ordinal()).getNumericCellValue();
         
-        LocalTime beginTime = LocalTime.parse(row.getCell(CellInfoDemand.START_TIME.ordinal()).getStringCellValue());
+        LocalTime beginTime = LocalTime.parse(row.getCell(CellInfoDemand.START_TIME.ordinal()).getStringCellValue().trim());
         
-        LocalTime durationTime = LocalTime.of(0, 0).plusMinutes((int) row.getCell(CellInfoDemand.DURATION.ordinal()).getNumericCellValue());
+        int durationMinutes = DEFAULT_DURATION_TIME;
+        Cell durationCell = row.getCell(CellInfoDemand.DURATION.ordinal());
+        		
+        if(durationCell.getCellTypeEnum() == CellType.NUMERIC) {
+        	durationMinutes = (int) durationCell.getNumericCellValue();
+        }
+        
+        LocalTime durationTime = LocalTime.of(0, 0).plusMinutes(durationMinutes);
         
         List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
-        daysOfWeek.add(DayOfWeek.of((int) row.getCell(CellInfoDemand.NUM_OF_SUDENTS.ordinal()).getNumericCellValue()));
+        daysOfWeek.add(DayOfWeek.of((int) row.getCell(CellInfoDemand.WEEKDAY.ordinal()).getNumericCellValue()));
         
-        Map<Resource, Integer> reqResources = this.convertToResourceList(row.getCell(CellInfoDemand.FEATURE_IDS.ordinal()).getStringCellValue());
+        String featureId = "";
+        
+        try {
+	        if(row.getCell(CellInfoDemand.FEATURE_IDS.ordinal()).getCellTypeEnum() == CellType.NUMERIC) {
+	    		featureId = Integer.toString((int) row.getCell(CellInfoDemand.FEATURE_IDS.ordinal()).getNumericCellValue());
+	    	} else {
+	    		featureId = row.getCell(CellInfoDemand.FEATURE_IDS.ordinal()).getStringCellValue();
+	    	}
+	        
+        } catch(NullPointerException e) {
+        	featureId = "";
+        }
+        
+        Map<Resource, Integer> reqResources = this.convertToResourceList(featureId);
+        	
         reqResources.put(ScholarResource.PLACES, groupNumStudents);
         
         Discipline currDiscipline = new Discipline(disciplineId, disciplineName);
@@ -246,8 +290,19 @@ public class ExcelIOService implements FileIOService {
         
 		Iterator<Row> itrClassrooms = sheet.iterator();
         
+		// Jump the line of the column labels
+ 		if(itrClassrooms.hasNext()) {
+ 			itrClassrooms.next();
+ 		}
+		
         while (itrClassrooms.hasNext()) {
-        	classrooms.add(this.getClassroomFromRow(itrClassrooms.next()));
+        	Row row = itrClassrooms.next();
+ 			
+ 			String building = row.getCell(CellInfoClassroom.BUILDING.ordinal()).getStringCellValue().trim();
+ 			
+ 			if(!building.isEmpty()) {
+ 				classrooms.add(this.getClassroomFromRow(row));
+ 			}
         }
         
         return classrooms;
@@ -288,7 +343,7 @@ public class ExcelIOService implements FileIOService {
 enum CellInfoDemand {
 	NAME,
 	ID,
-	NUM_OF_SUDENTS,
+	NUMBER_OF_STUDENTS,
 	TEACHER,
 	ID2,
 	ROOM_ID,
@@ -296,19 +351,9 @@ enum CellInfoDemand {
 	BUILDING_ID,
 	WEEKDAY,
 	START_TIME,
-	REQUIRES_BUILDING_ID,
+	REQUIRES_BULDING_ID,
 	REQUIRES_ROOM_ID,
-	FEATURE_IDS,
-	FEATURES_IDS,
-	NAME2,
-	ID3,
-	HIDDEN,
-	ID4,
-	ID5,
-	FEATURE_IDS6,
-	NUMBER_OF_PLACES,
-	AVAILABE_FOR_ALLOCATION,
-	NOTE;
+	FEATURE_IDS;
 }
 
 enum CellInfoClassroom {
