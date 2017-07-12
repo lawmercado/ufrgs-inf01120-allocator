@@ -297,11 +297,11 @@ public class ScholarDataServiceImplTest {
 		
 		this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
 		
-		assertEquals(this.sds.getReservations(LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31)).size(), 1); 
+		assertEquals(this.sds.getReservations().size(), 1); 
 	}
 	
 	@Test
 	public void testGetReservationsWhenNoReservations() {
-		assertEquals(this.sds.getReservations(LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31)).size(), 0); 
+		assertEquals(this.sds.getReservations().size(), 0); 
 	}
 }

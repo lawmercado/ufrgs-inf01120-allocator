@@ -30,7 +30,7 @@ public interface ScholarDataService {
 	
 	public List<Allocable> getAvailableClassrooms(LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
 	
-	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to);
+	public List<ScholarReservation> getReservations();
 	
 	public boolean classroomIsReserved(String building, String room, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
 	

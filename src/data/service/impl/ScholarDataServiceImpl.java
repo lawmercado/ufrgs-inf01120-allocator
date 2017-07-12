@@ -139,7 +139,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	@Override
 	public boolean classroomIsReserved(String building, String room, LocalTime lessonBegin, LocalTime lessonDuration,
 			List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
-		List<ScholarReservation> reservations = this.database.listReservations(from, to);
+		List<ScholarReservation> reservations = this.database.listReservations();
 
 		Iterator<ScholarReservation> itrReservations = reservations.iterator();
 
@@ -167,7 +167,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	public boolean lessonHasReservation(String disciplineId, String groupId, LocalTime lessonBegin,
 			LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to) {
 
-		List<ScholarReservation> reservations = this.database.listReservations(from, to);
+		List<ScholarReservation> reservations = this.database.listReservations();
 
 		Iterator<ScholarReservation> itrReservations = reservations.iterator();
 
@@ -192,8 +192,8 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	}
 
 	@Override
-	public List<ScholarReservation> getReservations(LocalDate from, LocalDate to) {
-		return this.database.listReservations(from, to);
+	public List<ScholarReservation> getReservations() {
+		return this.database.listReservations();
 	}
 
 }

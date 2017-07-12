@@ -1,6 +1,5 @@
 package data;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -141,19 +140,8 @@ public class Database {
 		return this.classrooms;
 	}
 
-	public List<ScholarReservation> listReservations(LocalDate from, LocalDate to) {
-		List<ScholarReservation> periodReservations = new ArrayList<ScholarReservation>();
-		Iterator<ScholarReservation> reservations = this.reservations.iterator();
-		
-		while(reservations.hasNext()) {
-			ScholarReservation currReservation = reservations.next();
-			
-			if(currReservation.getFrom().equals(from) && currReservation.getTo().equals(to)) {
-				periodReservations.add(currReservation);
-			}
-		}
-		
-		return periodReservations;
+	public List<ScholarReservation> listReservations() {
+		return this.reservations;
 	}
 	
 
