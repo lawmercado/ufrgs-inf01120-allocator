@@ -1,4 +1,4 @@
-package allocator.service.io.excel.test;
+package allocator.service.io.test;
 
 import static org.junit.Assert.*;
 
@@ -13,15 +13,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import allocator.data.domain.*;
-import allocator.data.service.ScholarDataService;
-import allocator.data.service.impl.ScholarDataServiceImpl;
 import allocator.service.FileIOService;
-import allocator.service.io.excel.ExcelIOService;
+import allocator.service.ScholarDataService;
+import allocator.service.data.ScholarDataServiceImpl;
+import allocator.service.io.ExcelIOService;
 
 public class ExcelIOServiceTest {
 
-	private final String INPUT_VALID_TEST_FILE_PATH = "src/allocator/service/io/excel/test/testSheet.xlsx";
-	private final String OUTPUT_TEST_FILE_PATH = "src/allocator/service/io/excel/test/testSheet_out.xlsx";
+	private final String INPUT_VALID_TEST_FILE_PATH = "src/allocator/service/io/test/testSheet.xlsx";
+	private final String OUTPUT_TEST_FILE_PATH = "src/allocator/service/io/test/testSheet_out.xlsx";
 	
 	private ScholarDataService sds;
 	private FileIOService fios;
@@ -29,8 +29,8 @@ public class ExcelIOServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		this.sds = new ScholarDataServiceImpl();
-		this.fios = new ExcelIOService();
-		this.fios.populateFromFile(this.sds, INPUT_VALID_TEST_FILE_PATH);
+		this.fios = new ExcelIOService(this.sds);
+		this.fios.populateFromFile(INPUT_VALID_TEST_FILE_PATH);
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class ExcelIOServiceTest {
 	
 	@Test(expected = FileNotFoundException.class)
 	public void testInputOfInvalidFile() throws FileNotFoundException {
-		this.fios.populateFromFile(this.sds, "TESTE");
+		this.fios.populateFromFile("TESTE");
 	}
 	
 	@Test
@@ -129,7 +129,12 @@ public class ExcelIOServiceTest {
 		
 		}
 	
-		this.fios.write(OUTPUT_TEST_FILE_PATH);
+		try {
+			this.fios.saveToFile(OUTPUT_TEST_FILE_PATH);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

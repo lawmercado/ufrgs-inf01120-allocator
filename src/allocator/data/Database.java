@@ -1,5 +1,6 @@
 package allocator.data;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -90,7 +91,7 @@ public class Database {
 		return groups;
 	}
 	
-	public Lesson getLesson(String disciplineId, String groupId, LocalTime begin) {
+	public Lesson getLesson(String disciplineId, String groupId, LocalTime begin, List<DayOfWeek> daysOfWeek) {
 		List<Lesson> lessons = this.listLessons(disciplineId, groupId);
 		
 		Iterator<Lesson> itrLesson = lessons.iterator();
@@ -98,7 +99,7 @@ public class Database {
 		while(itrLesson.hasNext()) {
 			Lesson lesson = itrLesson.next();
 			
-			if(lesson.getBegin().equals(begin)) {
+			if(lesson.getBegin().equals(begin) && lesson.getDaysOfWeek().equals(daysOfWeek)) {
 				return lesson;
 			}
 		}

@@ -1,4 +1,4 @@
-package allocator.data.service;
+package allocator.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,4 +35,6 @@ public interface ScholarDataService {
 	public boolean classroomIsReserved(String building, String room, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
 	
 	public boolean lessonHasReservation(String disciplineId, String groupId, LocalTime lessonBegin, LocalTime lessonDuration, List<DayOfWeek> lessonDaysOfWeek, LocalDate from, LocalDate to);
+	
+	public void clear();
 }

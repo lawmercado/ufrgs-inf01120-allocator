@@ -1,4 +1,4 @@
-package allocator.data.service.impl.test;
+package allocator.service.data.test;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import allocator.data.domain.*;
-import allocator.data.service.impl.*;
+import allocator.service.data.*;
 
 public class ScholarDataServiceImplTest {
 

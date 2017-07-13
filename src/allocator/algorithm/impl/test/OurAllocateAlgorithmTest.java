@@ -1,4 +1,4 @@
-package allocator.algorithm.test;
+package allocator.algorithm.impl.test;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import allocator.algorithm.AllocationAlgorithm;
-import allocator.algorithm.OurAllocateAlgorithm;
+import allocator.algorithm.impl.OurAllocateAlgorithm;
 import allocator.data.domain.*;
 
 public class OurAllocateAlgorithmTest {

@@ -1,11 +1,11 @@
-package allocator.service.io.excel;
+package allocator.service.io;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import allocator.data.domain.*;
-import allocator.data.service.ScholarDataService;
 import allocator.service.FileIOService;
+import allocator.service.ScholarDataService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,15 +30,20 @@ public class ExcelIOService implements FileIOService {
 	
 	private ScholarDataService sds;
 	
-	@Override
-	public void populateFromFile(ScholarDataService sds, String filePath) throws FileNotFoundException {
+	public ExcelIOService(ScholarDataService sds) {
 		this.sds = sds;
-		
+	}
+	
+	@Override
+	public void populateFromFile(String filePath) throws FileNotFoundException {
 		FileInputStream excelFile = new FileInputStream(new File(filePath));
 		
 		try {
 			Workbook workbook = new XSSFWorkbook(excelFile);
 	        
+			// Clears the domain data stored
+			this.sds.clear();
+			
 	        this.populateDemandsFromWorkbook(workbook);
 	        
 	        this.populateClassroomsFromWorkbook(workbook);
@@ -51,7 +56,7 @@ public class ExcelIOService implements FileIOService {
 	}
 
 	@Override
-	public void write(String filePath) {
+	public void saveToFile(String filePath) throws FileNotFoundException {
 		XSSFWorkbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Allocated places");
         
@@ -61,6 +66,7 @@ public class ExcelIOService implements FileIOService {
         
         row.createCell(CellInfoWrite.DISCIPLINE.ordinal()).setCellValue("Discipline");
         row.createCell(CellInfoWrite.GROUP.ordinal()).setCellValue("Group");
+        row.createCell(CellInfoWrite.TEACHER.ordinal()).setCellValue("Teacher");
         row.createCell(CellInfoWrite.START_TIME.ordinal()).setCellValue("Start time");
         row.createCell(CellInfoWrite.DURATION.ordinal()).setCellValue("Duration");
         row.createCell(CellInfoWrite.DAYS_OF_WEEK.ordinal()).setCellValue("Days of week");
@@ -79,6 +85,7 @@ public class ExcelIOService implements FileIOService {
         	
         	row.createCell(CellInfoWrite.DISCIPLINE.ordinal()).setCellValue(discipline);
             row.createCell(CellInfoWrite.GROUP.ordinal()).setCellValue(reservation.getLesson().getGroup().getId());
+            row.createCell(CellInfoWrite.TEACHER.ordinal()).setCellValue(reservation.getLesson().getGroup().getTeacher());
             row.createCell(CellInfoWrite.START_TIME.ordinal()).setCellValue(reservation.getLesson().getBegin().toString());
             row.createCell(CellInfoWrite.DURATION.ordinal()).setCellValue(reservation.getLesson().getDuration().toString());
             
@@ -90,17 +97,14 @@ public class ExcelIOService implements FileIOService {
             row.createCell(CellInfoWrite.PLACE.ordinal()).setCellValue(place);
         }
         
+        FileOutputStream outputStream = new FileOutputStream(filePath);
+        
         try {
-            FileOutputStream outputStream = new FileOutputStream(filePath);
             workbook.write(outputStream);
             workbook.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Done");
 	}
 	
 	private void populateDemandsFromWorkbook(Workbook workbook) {
@@ -136,11 +140,15 @@ public class ExcelIOService implements FileIOService {
 				for(int i = 0; i < compositeGroups.length; i++) {
 					compositeGroups[i] = compositeGroups[i].trim();
 					
+					System.out.println("INSERTING COMPOSITE lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
+					
 					this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), compositeGroups[i], lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
 				}
 			}
 			else
 			{
+				System.out.println("INSERTING lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
+				
 				this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), lesson.getGroup().getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
 			}
 		}
@@ -287,11 +295,9 @@ public class ExcelIOService implements FileIOService {
 		
 		boolean sameDiscipline = reference.getGroup().getDiscipline().getId().equals(comparing.getGroup().getDiscipline().getId());
 		boolean sameGroup = reference.getGroup().getId().equals(comparing.getGroup().getId());
-		boolean sameBeginTime = reference.getBegin().equals(comparing.getBegin());
-		boolean sameDurationTime = reference.getDuration().equals(comparing.getDuration());
 		boolean sameResources = reference.getResources().equals(comparing.getResources());
 		
-		return (sameDiscipline && sameGroup && sameBeginTime && sameDurationTime && sameResources);
+		return (sameDiscipline && sameGroup && sameResources);
 	}
 	
 	private Lesson mergeSimilarLessons(List<Lesson> similarLessons) {
@@ -303,13 +309,19 @@ public class ExcelIOService implements FileIOService {
 		
 		Iterator<Lesson> itrSimilarLessons = similarLessons.iterator();
 		
+		System.out.println("MERGING");
+		
 		while(itrSimilarLessons.hasNext()) {
 			currLesson = itrSimilarLessons.next();
+			
+			System.out.println("Mergin lesson - " + currLesson.getGroup().getDiscipline().getId() + " - " + currLesson.getGroup().getId() + " - " + currLesson.getDaysOfWeek());
 			
 			daysOfWeek.addAll(currLesson.getDaysOfWeek());
 		}
 		
 		lesson = new Lesson(sampleLesson.getGroup(), sampleLesson.getBegin(), sampleLesson.getDuration(), daysOfWeek, sampleLesson.getResources());
+		
+		System.out.println("Result lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
 		
 		return lesson;
 		
@@ -416,6 +428,7 @@ enum CellInfoClassroom {
 enum CellInfoWrite {
 	DISCIPLINE,
 	GROUP,
+	TEACHER,
 	START_TIME,
 	DURATION,
 	DAYS_OF_WEEK,

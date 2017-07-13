@@ -1,6 +1,6 @@
 package allocator.action;
 
-public interface Action {
+public interface AllocationAction {
 	
 	public void execute();
 	

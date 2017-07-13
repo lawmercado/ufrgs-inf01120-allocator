@@ -1,4 +1,4 @@
-package allocator.data.service.impl;
+package allocator.service.data;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import allocator.data.Database;
 import allocator.data.domain.*;
-import allocator.data.service.*;
+import allocator.service.ScholarDataService;
 
 public class ScholarDataServiceImpl implements ScholarDataService {
 
@@ -55,7 +55,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 			LocalDate to) {
 		
 		Classroom classroom = this.database.getClassroom(building, room);
-		Lesson lesson = this.database.getLesson(disciplineId, groupId, lessonBegin);
+		Lesson lesson = this.database.getLesson(disciplineId, groupId, lessonBegin, lessonDaysOfWeek);
 		
 		this.database.insert(new ScholarReservation(classroom, lesson, from, to));
 
@@ -93,7 +93,7 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 				while (itrLessons.hasNext()) {
 					Lesson currLesson = itrLessons.next();
 					if (currLesson.getBegin().equals(lessonBegin)
-							&& currLesson.getDaysOfWeek().equals(lessonDaysOfWeek)) {
+					 && currLesson.getDaysOfWeek().equals(lessonDaysOfWeek)) {
 						relatedGroups.add(currGroup);
 					}
 				}
@@ -195,6 +195,12 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 	@Override
 	public List<ScholarReservation> getReservations() {
 		return this.database.listReservations();
+	}
+
+	@Override
+	public void clear() {
+		this.database = new Database();
+		
 	}
 
 }

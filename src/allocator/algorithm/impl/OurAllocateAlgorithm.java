@@ -1,10 +1,11 @@
-package allocator.algorithm;
+package allocator.algorithm.impl;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import allocator.algorithm.AllocationAlgorithm;
 import allocator.data.domain.Allocable;
 import allocator.data.domain.Resource;
 import allocator.data.domain.ScholarResource;
