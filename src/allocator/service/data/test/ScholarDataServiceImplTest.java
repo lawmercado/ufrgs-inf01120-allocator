@@ -301,6 +301,42 @@ public class ScholarDataServiceImplTest {
 	}
 	
 	@Test
+	public void testGetAvailableClassrooomsForSingleDay() {
+		Discipline discipline = new Discipline("INF01120", "Técnicas de Construção de Programas");
+		Group group = new Group(discipline, "A", "ÉRIKA COTA", 40);
+
+		List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();
+		daysOfWeek.add(DayOfWeek.THURSDAY);
+		daysOfWeek.add(DayOfWeek.TUESDAY);
+
+		Map<Resource, Integer> reqResources = new HashMap<Resource, Integer>();
+		reqResources.put(ScholarResource.PLACES, group.getNumStudents());
+
+		this.sds.insertDiscipline(discipline.getId(), discipline.getName());
+		this.sds.insertGroup(discipline.getId(), group.getId(), group.getTeacher(), group.getNumStudents());
+		
+		this.sds.insertLesson(discipline.getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40),
+				daysOfWeek, reqResources);
+
+		Map<Resource, Integer> availResources = new HashMap<Resource, Integer>();
+		availResources.put(ScholarResource.PLACES, 80);
+		Classroom classroom = new Classroom("45425", "108", availResources);
+		
+		this.sds.insertClassroom(classroom.getBuilding(), classroom.getRoom(), availResources);
+		
+		List<Allocable> availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		assertEquals(availClassrooms.size(), 1);
+		
+		this.sds.insertReservation(classroom.getBuilding(), classroom.getRoom(), group.getDiscipline().getId(), group.getId(), LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		
+		daysOfWeek.remove(0);
+		
+		availClassrooms = this.sds.getAvailableClassrooms(LocalTime.of(10, 30), LocalTime.of(1, 40), daysOfWeek, LocalDate.of(2016, 1, 1), LocalDate.of(2016, 7, 31));
+		
+		assertEquals(0, availClassrooms.size());
+	}
+	
+	@Test
 	public void testGetReservationsWhenNoReservations() {
 		assertEquals(this.sds.getReservations().size(), 0); 
 	}

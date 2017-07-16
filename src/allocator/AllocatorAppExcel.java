@@ -12,18 +12,12 @@ import allocator.service.io.ExcelIOService;
 import allocator.service.ScholarDataService;
 import allocator.service.allocation.ScholarSemestralAllocationService;
 
-public class AllocatorApp {
+public class AllocatorAppExcel {
 
 	public static void main(String[] args) {
 		Allocator allocator = new Allocator();
 		
 		ScholarDataService sds = allocator.getScholarDataService();
-		
-		FileIOService excelIOService = new ExcelIOService(sds);
-		
-		IOAction inputExcelAction = new ExcelInputAction(excelIOService);
-		
-		allocator.run(inputExcelAction, "");
 		
 		AllocationAlgorithm algorithm = new OurAllocateAlgorithm();
 		LocalDate semesterBegin = LocalDate.of(2016, 1, 1);
@@ -31,6 +25,12 @@ public class AllocatorApp {
 		AllocationService semestralAllocationService = new ScholarSemestralAllocationService(algorithm, sds, semesterBegin);
 		
 		AllocationAction semestralAllocationAction = new ScholarSemestralAllocationAction(semestralAllocationService);
+		
+		FileIOService excelIOService = new ExcelIOService(sds);
+		
+		IOAction inputExcelAction = new ExcelInputAction(excelIOService);
+		
+		allocator.run(inputExcelAction, "");
 		
 		allocator.run(semestralAllocationAction);
 		

@@ -140,15 +140,11 @@ public class ExcelIOService implements FileIOService {
 				for(int i = 0; i < compositeGroups.length; i++) {
 					compositeGroups[i] = compositeGroups[i].trim();
 					
-					System.out.println("INSERTING COMPOSITE lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
-					
 					this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), compositeGroups[i], lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
 				}
 			}
 			else
 			{
-				System.out.println("INSERTING lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
-				
 				this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), lesson.getGroup().getId(), lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
 			}
 		}
@@ -256,9 +252,11 @@ public class ExcelIOService implements FileIOService {
         int durationMinutes = DEFAULT_DURATION_TIME;
         Cell durationCell = row.getCell(CellInfoDemand.DURATION.ordinal());
         		
-        if(durationCell.getCellTypeEnum() == CellType.NUMERIC) {
-        	durationMinutes = (int) durationCell.getNumericCellValue();
+        if(durationCell.getCellTypeEnum() != CellType.BLANK) {
+        	durationMinutes = Integer.parseInt(durationCell.getStringCellValue());
         }
+        
+        System.out.println(durationMinutes + " from " + disciplineId);
         
         LocalTime durationTime = LocalTime.of(0, 0).plusMinutes(durationMinutes);
         
@@ -309,19 +307,13 @@ public class ExcelIOService implements FileIOService {
 		
 		Iterator<Lesson> itrSimilarLessons = similarLessons.iterator();
 		
-		System.out.println("MERGING");
-		
 		while(itrSimilarLessons.hasNext()) {
 			currLesson = itrSimilarLessons.next();
-			
-			System.out.println("Mergin lesson - " + currLesson.getGroup().getDiscipline().getId() + " - " + currLesson.getGroup().getId() + " - " + currLesson.getDaysOfWeek());
 			
 			daysOfWeek.addAll(currLesson.getDaysOfWeek());
 		}
 		
 		lesson = new Lesson(sampleLesson.getGroup(), sampleLesson.getBegin(), sampleLesson.getDuration(), daysOfWeek, sampleLesson.getResources());
-		
-		System.out.println("Result lesson - " + lesson.getGroup().getDiscipline().getId() + " - " + lesson.getGroup().getId() + " - " + lesson.getDaysOfWeek());
 		
 		return lesson;
 		

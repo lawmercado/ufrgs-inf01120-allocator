@@ -109,11 +109,7 @@ public class ScholarSemestralAllocationService implements AllocationService
 							
 							if(local != null)
 							{
-								System.out.println("RESERVANDO LESSON - " + actualGroup.getDiscipline().getId() + " - " + actualGroup.getId() + " - " + Lesson.getDaysOfWeekFromAllocable(actualLesson));
-								
 								this.sds.insertReservation(Classroom.getBuildingFromAllocable(local), Classroom.getRoomFromAllocable(local), discipline.getId(), actualGroup.getId(), Lesson.getBeginTimeFromAllocable(actualLesson), Lesson.getDurationTimeFromAllocable(actualLesson), Lesson.getDaysOfWeekFromAllocable(actualLesson), this.semesterBegin, this.semesterBegin.plusMonths(6));
-								
-								System.out.println("INSERIU A RESERVA PARA O GRUPO PRINCIPAL");
 								
 								relatedGroups = this.sds.getRelatedGroups(discipline.getId(), actualGroup.getId(), Lesson.getBeginTimeFromAllocable(actualLesson), Lesson.getDaysOfWeekFromAllocable(actualLesson));
 								relatedGroupsIter = relatedGroups.iterator();
@@ -123,7 +119,6 @@ public class ScholarSemestralAllocationService implements AllocationService
 									Group relatedGroupX = relatedGroupsIter.next();
 									
 									this.sds.insertReservation(Classroom.getBuildingFromAllocable(local), Classroom.getRoomFromAllocable(local), relatedGroupX.getDiscipline().getId(), relatedGroupX.getId(), Lesson.getBeginTimeFromAllocable(actualLesson), Lesson.getDurationTimeFromAllocable(actualLesson), Lesson.getDaysOfWeekFromAllocable(actualLesson), this.semesterBegin, this.semesterBegin.plusMonths(6));
-									System.out.println("INSERIU A RESERVA PARA GRUPOS RELACIONADOS");
 								}
 							}
 							//System.out.println("INSERIU A RESERVA GERAL, TEORICAMENTE");

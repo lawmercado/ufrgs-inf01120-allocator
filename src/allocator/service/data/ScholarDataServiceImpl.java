@@ -151,8 +151,20 @@ public class ScholarDataServiceImpl implements ScholarDataService {
 			isReservedTests.add(currentReserv.getClassroom().getBuilding().equals(building));
 			isReservedTests.add(currentReserv.getClassroom().getRoom().equals(room));
 			isReservedTests.add(currentReserv.getLesson().getBegin().equals(lessonBegin));
-			isReservedTests.add(currentReserv.getLesson().getDuration().equals(lessonDuration));
-			isReservedTests.add(currentReserv.getLesson().getDaysOfWeek().equals(lessonDaysOfWeek));
+			
+			boolean durationOverlaps = currentReserv.getLesson().getDuration().equals(lessonDuration) || currentReserv.getLesson().getDuration().isAfter(lessonDuration);
+			
+			isReservedTests.add(durationOverlaps);
+			
+			boolean hasReservationInWeekday = false;
+			
+			for(int i = 0; i < lessonDaysOfWeek.size(); i++) {
+				if(currentReserv.getLesson().getDaysOfWeek().contains(lessonDaysOfWeek.get(i))) {
+					hasReservationInWeekday = true;
+				}
+			}
+			
+			isReservedTests.add(hasReservationInWeekday);
 			isReservedTests.add(currentReserv.getFrom().isEqual(from));
 			isReservedTests.add(currentReserv.getTo().isEqual(to));
 

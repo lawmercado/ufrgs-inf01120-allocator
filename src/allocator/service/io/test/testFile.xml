@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><allocation>
+	<courses>
+		<course id="INF05019" name="AGENTES AUTÔNOMOS E SISTEMAS MULTIAGENTES">
+		- <group id="U" number_of_students="30" teacher="ANA LUCIA CETERTICH BAZZAN, RAFAEL HEITOR BORDINI">
+		  <session building_id="" duration="240" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP124" name="AGENTES AUTÔNOMOS E SISTEMAS MULTIAGENTES">
+		- <group id="U" number_of_students="30" teacher="ANA LUCIA CETERTICH BAZZAN">
+		  <session duration="240" requires_building_id="" requires_room_id="" start_time="13:30" weekday="2"/> 
+		  </group>
+		  </course>
+		- <course id="INF01202" name="ALGORÍTMOS E PROGRAMAÇÃO - CIC">
+		- <group id="A, B" number_of_students="40" teacher="ANDERSON MACIEL">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		- <group id="A" number_of_students="20" teacher="ANDERSON MACIEL">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		- <group id="B" number_of_students="20" teacher="ANDERSON MACIEL">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="15:30" weekday="5"/> 
+		  </group>
+		- <group id="C, D" number_of_students="40" teacher="ANTONIO CARLOS SCHNEIDER BECK FILHO">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		- <group id="C" number_of_students="23" teacher="ULISSES BRISOLARA CORREA">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="13:30" weekday="1"/> 
+		  </group>
+		- <group id="D" number_of_students="17" teacher="ULISSES BRISOLARA CORREA">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		- <group id="E, F" number_of_students="39" teacher="MARA ABEL">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		- <group id="E" number_of_students="22" teacher="MARA ABEL">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		- <group id="F" number_of_students="17" teacher="MARA ABEL">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="15:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP155" name="ANÁLISE E DESENVOLVIMENTO DE ALGORITMOS">
+		- <group id="U" number_of_students="40" teacher="MARCUS RITT">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		- <course id="INF01023" name="ARQUITETURA E DESEMPENHO DE BANCO DE DADOS">
+		- <group id="U" number_of_students="25" teacher="CIRANO IOCHPE">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		- <course id="INF01108" name="ARQUITETURA E ORGANIZAÇÃO DE COMPUTADORES I">
+		- <group id="A" number_of_students="26" teacher="CARLOS ARTHUR LANG LISBOA">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		- <group id="B" number_of_students="30" teacher="CARLOS ARTHUR LANG LISBOA">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF01112" name="ARQUITETURA E ORGANIZAÇÃO DE COMPUTADORES II">
+		- <group id="A" number_of_students="40" teacher="RAUL FERNANDO WEBER">
+		  <session building_id="" duration="120" requires_building_id="" requires_room_id="ANFA (Anfiteatro Azul)" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		- <group id="B" number_of_students="10" teacher="JOAO CESAR NETTO">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		- <group id="C" number_of_students="35" teacher="JOAO CESAR NETTO">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP237" name="ARQUITETURA E ORGANIZAÇÃO DE PROCESSDORES">
+		- <group id="U" number_of_students="40" teacher="LUIGI CARRO">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		</course>
+		- <course id="INF01191" name="ARQUITETURAS AVANÇADAS DE COMPUTADORES">
+		- <group id="U" number_of_students="30" teacher="PHILIPPE OLIVIER ALEXANDRE NAVAUX">
+		  <session building_id="" duration="120" requires_building_id="" requires_room_id="ANFA (Anfiteatro Azul)" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF05006" name="CATEGORIAS COMPUTACIONAIS N">
+		- <group id="U" number_of_students="40" teacher="PAULO FERNANDO BLAUTH MENEZES">
+		  <session duration="" requires_building_id="" requires_room_id="108" start_time="13:30" weekday="2"/> 
+		  <session duration="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF01058" name="CIRCUITOS DIGITAIS">
+		- <group id="A" number_of_students="30" teacher="RENATO PEREZ RIBAS">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/>
+		  </group>
+		  <group id="B" number_of_students="30" teacher="RICARDO AUGUSTO DA LUZ REIS">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  <group id="C" number_of_students="30" teacher="FERNANDO ROSA DO NASCIMENTO">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  <group id="D" number_of_students="30" teacher="FERNANDO ROSA DO NASCIMENTO">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  <group id="E" number_of_students="30" teacher="SERGIO BAMPI">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		- <course id="INF01124" name="CLASSIFICAÇÃO E PESQUISA DE DADOS">
+		- <group id="A" number_of_students="40" teacher="JOSE PALAZZO MOREIRA DE OLIVEIRA">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		- <group id="B" number_of_students="40" teacher="MANUEL MENEZES DE OLIVEIRA NETO">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF05515" name="COMPLEXIDADE DE ALGORITMOS- B">
+		  <group id="A" number_of_students="30" teacher="MARIANA LUDERITZ KOLBERG">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		- <group id="B" number_of_students="30" teacher="MARIANA LUDERITZ KOLBERG">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		- <course id="INF01147" name="COMPILADORES">
+		- <group id="A" number_of_students="40" teacher="MARCELO DE OLIVEIRA JOHANN">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		- <group id="B" number_of_students="30" teacher="STEFANO MOR">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF01037" name="COMPUTAÇÃO EVOLUTIVA">
+		- <group id="U" number_of_students="40" teacher="DANTE AUGUSTO COUTO BARONE">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF01009" name="COMPUTAÇÃO GRÁFICA">
+		- <group id="U" number_of_students="40" teacher="MANUEL MENEZES DE OLIVEIRA NETO">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP230" name="COMPUTER SYSTEMS SECURITY">
+		- <group id="U" number_of_students="45" teacher="MARINHO BARCELLOS">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="INF01185" name="CONCEPÇÃO DE CIRCUITOS INTEGRADOS I">
+		- <group id="U" number_of_students="40" teacher="RIBAS">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		- <course id="INF01056" name="DESAFIOS DE PROGRAMAÇÃO">
+		- <group id="U" number_of_students="42" teacher="JOAO COMBA">
+		  <session building_id="" duration="240" feature_ids="1" room_id="" start_time="08:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP259" name="DESCOBERTA DE CONHECIMENTO EM BASES DE DADOS">
+		- <group id="U" number_of_students="50" teacher="KARIN BECKER">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP115" name="DESIGN OF VLSI CIRCUITS">
+		 <group id="U" number_of_students="50" teacher="SERGIO BAMPI">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01032" name="EMPREENDIMENTO EM INFORMÁTICA">
+		 <group id="U" number_of_students="63" teacher="NEWTON BRAGA ROSA">
+		  <session building_id="" duration="240" room_id="" start_time="08:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP102" name="ENGENHARIA DE SOFTWARE">
+		 <group id="U" number_of_students="50" teacher="MARCELO SOARES PIMENTA">
+		  <session building_id="" duration="240" room_id="" start_time="08:30" weekday="5"/> 
+		  </group>
+		</course>
+		 <course id="INF01003" name="ENGENHARIA DE SOFTWARE II">
+		 <group id="U" number_of_students="44" teacher="MARCELO SOARES PIMENTA">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01127" name="ENGENHARIA DE SOFTWARE N">
+		 <group id="A" number_of_students="44" teacher="KARIN BECKER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="KARIN BECKER">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01001" name="ESPECIFICAÇÃO FORMAL N">
+		 <group id="U" number_of_students="20" teacher="DALTRO JOSE NUNES">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01203" name="ESTRUTURAS DE DADOS">
+		 <group id="A" number_of_students="40" teacher="RENATA DE MATOS GALANTE">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="MONICA MAGALHAES PEREIRA">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP241" name="FERRAMENTAS PARA SÍNTESE AUTOMÁTICA DE CIRCUITOS INTEGRADOS">
+		 <group id="U" number_of_students="30" teacher="RICARDO REIS">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/>
+		  </group>
+		  </course>
+		  <course id="INF05008" name="FUNDAMENTOS DE ALGORITMOS">
+		 <group id="A" number_of_students="40" teacher="ANA LUCIA CETERTICH BAZZAN">
+		  <session duration="" requires_building_id="" requires_room_id="ANFA (Anfiteatro Azul)" start_time="13:30" weekday="1"/> 
+		  <session duration="" start_time="13:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="LEILA RIBEIRO">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		 <group id="C" number_of_students="40" teacher="LUCIO MAURO DUARTE">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		 <group id="D" number_of_students="40" teacher="LUCIO MAURO DUARTE">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01145" name="FUNDAMENTOS DE BANCO DE DADOS">
+		 <group id="U" number_of_students="40" teacher="CIRANO IOCHPE">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01047" name="FUNDAMENTOS DE COMPUTAÇÃO GRÁFICA">
+		 <group id="A" number_of_students="41" teacher="JOAO LUIZ DIL COMBA">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="MARCELO WALTER">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01046" name="FUNDAMENTOS DE PROCESSAMENTO DE IMAGENS">
+		 <group id="U" number_of_students="40" teacher="JACOB SCHARCANSKI">
+		  <session building_id="" duration="120" features_ids="1" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" features_ids="1" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01209" name="FUNDAMENTOS DE TOLERÂNCIA A FALHAS">
+		 <group id="A" number_of_students="40" teacher="TAISY SILVA WEBER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="TAISY SILVA WEBER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="INF01048" name="INTELIGÊNCIA ARTIFICIAL">
+		 <group id="U" number_of_students="40" teacher="PAULO MARTINS ENGEL">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01043" name="INTERAÇÃO HOMEM-COMPUTADOR">
+		 <group id="A" number_of_students="47" teacher="LUCIANA PORCHER NEDEL">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="47" teacher="ANDERSON MACIEL">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01107" name="INTRODUÇÃO À ARQUITETURA DE COMPUTADORES">
+		 <group id="A" number_of_students="45" teacher="RAUL FERNANDO WEBER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="42" teacher="INGRID ELEONORA SCHREIBER JANSCH PORTO">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		 <group id="C" number_of_students="42" teacher="INGRID ELEONORA SCHREIBER JANSCH PORTO">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="INF01049" name="INTRODUÇÃO À PESQUISA EM INFORMÁTICA">
+		 <group id="A" number_of_students="30" teacher="ANDRE INACIO REIS">
+		  <session building_id="" duration="240" room_id="" start_time="10:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP165" name="INTRODUÇÃO AO PROCESSAMENTO DE IMAGENS">
+		 <group id="U" number_of_students="30" teacher="JACOB SCHARCANSKI">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/>
+		  </group>
+		  </course>
+		  <course id="CMP165" name="INTRODUÇÃO AO PROCESSAMENTO PARALELO E DISTRIBUÍDO">
+		 <group id="U" number_of_students="30" teacher="JPHILIPPE NAVAUX">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/>
+		  </group>
+		  </course>
+		 <course id="INF01210" name="INTRODUÇÃO À INFORMÁTICA">
+		 <group id="A" number_of_students="25" teacher="HELENA SAINT PASTOUS VAUTHIER DE SOUZA">
+		  <session building_id="" duration="240" room_id="" start_time="13:30" weekday="1"/> 
+		  </group>
+		 <group id="B" number_of_students="27" teacher="IVONE MALUF MEDEIROS">
+		  <session building_id="" duration="240" room_id="" start_time="18:30" weekday="1"/> 
+		  </group>
+		 <group id="C" number_of_students="26" teacher="HELENA SAINT PASTOUS VAUTHIER DE SOUZA">
+		  <session building_id="" duration="240" room_id="" start_time="13:30" weekday="2"/> 
+		  </group>
+		 <group id="D" number_of_students="27" teacher="JOSE NICOLETTI JUNIOR">
+		  <session building_id="" duration="240" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		 <group id="E" number_of_students="21" teacher="JOSE NICOLETTI JUNIOR">
+		  <session building_id="" duration="240" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		 <group id="F" number_of_students="25" teacher="HELENA SAINT PASTOUS VAUTHIER DE SOUZA">
+		  <session building_id="" duration="240" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		 <group id="G" number_of_students="24" teacher="ROQUE ANTONIO LIMA">
+		  <session building_id="" duration="240" room_id="" start_time="08:30" weekday="5"/> 
+		  </group>
+		 <group id="H" number_of_students="25" teacher="ROQUE ANTONIO LIMA">
+		  <session building_id="" duration="240" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		  </course>
+		 <course id="INF01049" name="INTRODUÇÃO À PESQUISA EM INFORMÁTICA">
+		 <group id="U" number_of_students="40" teacher="ANDRE INACIO REIS">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="5"/> 
+		  </group>
+		  </course>
+		 <course id="INF01040" name="INTRODUÇÃO À PROGRAMAÇÃO">
+		 <group id="A" number_of_students="33" teacher="SUBSTITUTO 2">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="1"/> 
+		  </group>
+		 <group id="B" number_of_students="60" teacher="ALEXANDER GRANITOFF">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  </group>
+		 <group id="C" number_of_students="60" teacher="ALEXANDER GRANITOFF">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  </group>
+		 <group id="D" number_of_students="30" teacher="IVONE MALUF MEDERO">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  </group>
+		 <group id="E" number_of_students="30" teacher="IVONE MALUF MEDERO">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  </group>
+		 <group id="F" number_of_students="30" teacher="ROBERTO BINS ELY">
+		  <session building_id="" duration="120" room_id="" start_time="18:30" weekday="1"/> 
+		  </group>
+		 <group id="G" number_of_students="30" teacher="ULISSES BRISOLORA CORREA">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  </group>
+		 <group id="H" number_of_students="32" teacher="LUIS DE FRANCA GONCALVES FERREIRA">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  </group>
+		 <group id="I" number_of_students="32" teacher="MAGDA BERCHT">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  </group>
+		 <group id="J" number_of_students="30" teacher="LUIS DE FRANCA GONCALVES FERREIRA">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  </group>
+		 <group id="K" number_of_students="30" teacher="SUBSTITUTO 1">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  </group>
+		 <group id="L" number_of_students="30" teacher="SUBSTITUTO 1">
+		  <session building_id="" duration="120" room_id="" start_time="18:30" weekday="2"/> 
+		  </group>
+		 <group id="M" number_of_students="40" teacher="ROBERTO BINS ELY">
+		  <session building_id="" duration="120" room_id="" start_time="18:30" weekday="4"/> 
+		  </group>
+		 <group id="O" number_of_students="40" teacher="PAULO SCHREINER">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  </group>
+		 <group id="P" number_of_students="40" teacher="PAULO SCHREINER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF05005" name="LINGUAGENS FORMAIS E AUTÔMATOS N">
+		 <group id="A" number_of_students="40" teacher="ALINE, LUCIO MAURO DUARTE">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="MARIANA, ALINE">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF05508" name="LÓGICA PARA COMPUTAÇÃO">
+		 <group id="A" number_of_students="40" teacher="ROSA MARIA VICCARI">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="MARNES">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP150" name="MÉTODOS FORMAIS">
+		 <group id="U" number_of_students="31" teacher="DALTRO JOSÉ NUNES">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01121" name="MODELOS DE LINGUAGEM DE PROGRAMAÇÃO">
+		 <group id="A" number_of_students="31" teacher="LEANDRO KRUG WIVES">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="38" teacher="LEANDRO KRUG WIVES">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01113" name="ORGANIZAÇÃO DE COMPUTADORES B">
+		 <group id="A" number_of_students="45" teacher="ANTONIO CARLOS SCHNEIDER BECK FILHO">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="LUIGI CARRO">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF05010" name="OTIMIZAÇÃO COMBINATÓRIA">
+		 <group id="A" number_of_students="40" teacher="MARCUS ROLF PETER RITT">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="LUCIANA SALETE BURIOL">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP167" name="PROGRAMAÇÃO COM OBJETOS DISTRIBUÍDOS">
+		 <group id="U" number_of_students="40" teacher="CLAUDIO FERNANDO RESIN GEYER">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01008" name="PROGRAMAÇÃO DISTRIBUÍDA E PARALELA">
+		 <group id="U" number_of_students="40" teacher="CLAUDIO FERNANDO RESIN GEYER">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01008" name="PROJETO E TESTE DE SISTEMAS VLSI">
+		 <group id="U" number_of_students="40" teacher="FERNANDA GUSMÃO DE LIMA KASTENSMIDT">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01002" name="PROTOCOLOS DE COMUNICAÇÃO">
+		 <group id="U" number_of_students="40" teacher="LUCIANO PASCHOAL GASPARY">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP182" name="REDES DE COMPUTADORES I">
+		 <group id="U" number_of_students="40" teacher="LUCIANO PASCHOAL GASPARY">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01154" name="REDES DE COMPUTADORES N">
+		 <group id="A, B" number_of_students="40" teacher="ALEXANDRE DA SILVA CARISSIMI">
+		  <session duration="" requires_building_id="" requires_room_id="108" start_time="10:30" weekday="2"/> 
+		  <session duration="" start_time="10:30" weekday="4"/> 
+		  </group>
+		 <group id="A" number_of_students="20" teacher="VALTER ROESLER">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="08:30" weekday="5"/> 
+		  </group>
+		 <group id="B" number_of_students="20" teacher="VALTER ROESLER">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="10:30" weekday="5"/> 
+		  </group>
+		 <group id="C" number_of_students="20" teacher="VALTER ROESLER">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		 <group id="C, D" number_of_students="40" teacher="ANTONIO MARINHO PILLA BARCELLOS">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		 <group id="D" number_of_students="20" teacher="VALTER ROESLER">
+		  <session building_id="" duration="120" feature_ids="2" room_id="" start_time="15:30" weekday="5"/> 
+		  </group>
+		  </course>
+		  <course id="CMP121" name="REDES NEURAIS">
+		 <group id="U" number_of_students="50" teacher="PAULO MARTINS ENGEL">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01034" name="ROBÓTICA II">
+		 <group id="U" number_of_students="20" teacher="DANTE AUGUSTO COUTO BARONE">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF05516" name="SEMÂNTICA FORMAL N">
+		 <group id="A" number_of_students="42" teacher="ÁLVARO FREITAS MOREIRA">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="40" teacher="">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		   <course id="CMP112" name="SISTEMAS DE INFORMAÇÃO DISTRIBUÍDOS">
+		  <group id="U" number_of_students="30" teacher="JOSÉ PALAZZO MOREIRA DE OLIVEIRA">
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" feature_ids="1" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01175" name="SISTEMAS DIGITAIS PARA COMPUTADORES A">
+		 <group id="U" number_of_students="30" teacher="FERNANDA GUSMAO DE LIMA KASTENSMIDT">
+		  <session duration="" requires_building_id="" requires_room_id="105" start_time="08:30" weekday="2"/> 
+		  <session duration="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01142" name="SISTEMAS OPERACIONAIS I N">
+		 <group id="A" number_of_students="41" teacher="SERGIO LUIS CECHIN">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		 <group id="B" number_of_students="43" teacher="ALEXANDRE DA SILVA CARISSIMI">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01151" name="SISTEMAS OPERACIONAIS II N">
+		 <group id="U" number_of_students="46" teacher="JOHANN">
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="2"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP573" name="SPECIAL TOPICS IN COMPUTING: MODELING IN COMPUTER GRAPHICS">
+		 <group id="U" number_of_students="50" teacher="MARCELO WALTER">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP262" name="TÉCNICAS ALTERNATIVAS DE INTERAÇÃO E REALIDADE VIRTUAL">
+		 <group id="U" number_of_students="50" teacher="LUCIANA PORCHER NEDEL">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF01120" name="TÉCNICAS DE CONSTRUÇÃO DE PROGRAMAS">
+		 <group id="U" number_of_students="45" teacher="ERIKA FERNANDES COTA">
+		  <session building_id="43425(73)" duration="120" room_id="107" start_time="15:30" weekday="2"/> 
+		  <session building_id="43425(73)" duration="120" room_id="107" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="INF05501" name="TEORIA DA COMPUTAÇÃO N">
+		 <group id="A" number_of_students="40" teacher="TIARAJU ASMUZ DIVERIO">
+		  <session building_id="" duration="120" requires_building_id="" requires_room_id="118" room_id="" start_time="08:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="08:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="50" teacher="TIARAJU ASMUZ DIVERIO">
+		  <session building_id="" duration="120" requires_building_id="" requires_room_id="118" room_id="" start_time="10:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		 <course id="INF05512" name="TEORIA DOS GRAFOS E ANÁLISE COMBINATÓRIA">
+		 <group id="A" number_of_students="30" teacher="EDSON PRESTES E SILVA JUNIOR">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		 <group id="B" number_of_students="30" teacher="MARNES">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP152" name="THEORY OF COMPUTING">
+		 <group id="U" number_of_students="45" teacher="LEILA RIBEIRO">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="1"/> 
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP545" name="TÓPICOS AVANÇADOS EM MODELO DE BANCO DE DADOS">
+		 <group id="U" number_of_students="50" teacher="RENATA GALANTE">
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="2"/>
+		  <session building_id="" duration="120" room_id="" start_time="15:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP151" name="TÓPICOS ESPECIAIS EM COMPUTAÇÃO: INTRODUÇÃO À ROBÓTICA MÓVEL">
+		 <group id="U" number_of_students="50" teacher="EDSON PRESTES DA SILVA JUNIOR">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="1"/>
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="3"/> 
+		  </group>
+		  </course>
+		  <course id="CMP562" name="TÓPICOS ESPECIAIS EM COMPUTAÇÃO: FUNDAMENTOS MATEMÁTICOS PARA PROCESSAMENTOS GRÁFICO">
+		 <group id="U" number_of_students="50" teacher="CLAUDIO ROSITO JUNG">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/>
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		  <course id="CMP544" name="TÓPICOS ESPECIAIS EM COMPUTAÇÃO: VISUALIZAÇÃO">
+		 <group id="U" number_of_students="50" teacher="CARLA MARIA DAL SASSO FREITAS">
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="2"/>
+		  <session building_id="" duration="120" room_id="" start_time="10:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01061" name="TÓPICOS ESPECIAIS EM COMPUTAÇÃO XVII">
+		 <group id="U" number_of_students="50" teacher="RAUL FERNANDO WEBER">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="2"/>
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="4"/> 
+		  </group>
+		  </course>
+		 <course id="INF01066" name="TÓPICOS ESPECIAIS EM COMPUTAÇÃO XXII">
+		 <group id="U" number_of_students="20" teacher="MANUEL MENEZES DE OLIVEIRA NETO">
+		  <session building_id="" duration="120" room_id="" start_time="13:30" weekday="5"/> 
+		  </group>
+		  </course>
+	</courses>
+	<features>
+		<feature id="1" name="Laboratório de ensino"/>
+		<feature id="2" name="Laboratório de ensino de hardware"/>
+		<feature hidden="true" id="3" name="Som e microfone"/>
+		<feature id="4" name="Reuniões"/>
+		<feature id="5" name="Apresentações (defesas, TCC, etc)"/>
+		<feature hidden="true" id="6" name="Tela motorizada"/>
+		<feature id="7" name="Eventos e Palestras"/>
+		<feature id="8" name="Sala de aula"/>
+		<feature hidden="true" id="9" name="Laboratório de ensino para cadeiras de introdução"/>
+		<feature id="10" name="Vídeo conferência"/>
+	</features>
+	<buildings>
+			<building id="43412(65)">
+				<room feature_ids="3, 5, 8" id="ANFV (Anfiteatro Vermelho)" number_of_places="76">
+					
+				</room>
+				<room feature_ids="3, 5, 8" id="ANFA (Anfiteatro Azul)" number_of_places="76"/>
+				<room available_for_allocation="false" feature_ids="4, 5" id="214" number_of_places="15"/>
+				<room available_for_allocation="false" feature_ids="4, 5" id="216" number_of_places="15">
+					
+					
+					
+				</room>
+				<room available_for_allocation="false" feature_ids="4, 5, 10" id="220" number_of_places="20">
+					
+				</room>
+			</building>
+			<building id="43413(67)">
+				<room feature_ids="1" id="101" note="Laboratório" number_of_places="45"/>
+				<room feature_ids="1" id="102" note="Laboratório" number_of_places="45"/>
+				<room feature_ids="1" id="103" note="Laboratório" number_of_places="45"/>
+				<room feature_ids="1" id="104" note="Laboratório" number_of_places="45"/>
+				<room feature_ids="2" id="105" number_of_places="20"/>
+				<room feature_ids="5, 8" id="106" number_of_places="40"/>
+				<room available_for_allocation="false" feature_ids="3, 6, 7" id="INF (Auditório)" number_of_places="155">
+					
+					
+				</room>
+			</building>
+			<building id="43424(72)">
+				<room feature_ids="5, 8" id="102" number_of_places="40">
+					
+				</room>
+				<room available_for_allocation="false" feature_ids="3, 5, 6, 7" id="AUDC (Auditório Prof. Castilho)" number_of_places="126">
+					
+				</room>
+			</building>
+			<building id="43425(73)">
+				<room feature_ids="9" id="101" note="Laboratório" number_of_places="40"/>
+				<room feature_ids="5, 8" id="102" number_of_places="40"/>
+				<room feature_ids="9" id="103" note="Laboratório" number_of_places="40"/>
+				<room feature_ids="5, 8" id="104" number_of_places="40"/>
+				<room feature_ids="9" id="105" note="Laboratório" number_of_places="40"/>
+				<room feature_ids="5, 8" id="107" number_of_places="45"/>
+				<room feature_ids="5, 8" id="108" number_of_places="60"/>
+				<room feature_ids="5, 8" id="109" number_of_places="45"/>
+				<room feature_ids="5, 8" id="111" number_of_places="45"/>
+				<room feature_ids="5, 8" id="112" number_of_places="45"/>
+				<room feature_ids="5, 8" id="113" number_of_places="45"/>
+				<room feature_ids="5, 8" id="114" number_of_places="45"/>
+				<room feature_ids="5, 8" id="116" number_of_places="45"/>
+				<room feature_ids="5, 8" id="118" number_of_places="45"/>
+			</building>
+	</buildings>
+</allocation>
