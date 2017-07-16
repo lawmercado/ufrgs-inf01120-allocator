@@ -187,6 +187,9 @@ public class XMLIOService implements FileIOService {
 					}
 				}
 			}
+		} catch (FileNotFoundException e) {
+			throw e;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

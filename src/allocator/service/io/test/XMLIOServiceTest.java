@@ -110,8 +110,6 @@ public class XMLIOServiceTest  {
 				boolRoom = true;
 				assertEquals(avaibleResources.get(ScholarResource.FORMAL_PRESENTATIONS), classroom.getResources().get(ScholarResource.FORMAL_PRESENTATIONS) );
 				assertEquals(avaibleResources.get(ScholarResource.CLASSROOM), classroom.getResources().get(ScholarResource.CLASSROOM) );
-				System.out.println("\nAvaible Resources: " + i + "\n" + avaibleResources.get(ScholarResource.PLACES));
-				System.out.println("\nAvaible Resources: " + i + "\n" + classroom.getResources().get(ScholarResource.PLACES));
 			}
 			i++;
 		}

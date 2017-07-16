@@ -14,12 +14,8 @@ public class XMLOutputAction implements IOAction {
 	}
 	
 	@Override
-	public void execute(String filePath) {
-		try {
-			this.fios.saveToFile(filePath);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public void execute(String filePath) throws FileNotFoundException {
+		this.fios.saveToFile(filePath);
 		
 	}
 

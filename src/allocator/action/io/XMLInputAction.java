@@ -14,12 +14,8 @@ public class XMLInputAction implements IOAction {
 	}
 
 	@Override
-	public void execute(String filePath) {
-		try {
-			this.fios.populateFromFile(filePath);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+	public void execute(String filePath) throws FileNotFoundException {
+		this.fios.populateFromFile(filePath);
 	}
 	
 

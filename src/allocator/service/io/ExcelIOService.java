@@ -256,8 +256,6 @@ public class ExcelIOService implements FileIOService {
         	durationMinutes = Integer.parseInt(durationCell.getStringCellValue());
         }
         
-        System.out.println(durationMinutes + " from " + disciplineId);
-        
         LocalTime durationTime = LocalTime.of(0, 0).plusMinutes(durationMinutes);
         
         List<DayOfWeek> daysOfWeek = new ArrayList<DayOfWeek>();

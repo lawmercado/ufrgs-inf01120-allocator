@@ -40,7 +40,7 @@ public class OurAllocateAlgorithm implements AllocationAlgorithm {
 		return bestPossibility;
 	}
 
-	public Map<Resource, Integer> getMatchingResources(Map<Resource, Integer> reqResources, Map<Resource, Integer> availResources) {
+	private Map<Resource, Integer> getMatchingResources(Map<Resource, Integer> reqResources, Map<Resource, Integer> availResources) {
 		Iterator<Entry<Resource, Integer>> itrReqResources = reqResources.entrySet().iterator();
 
 		Map<Resource, Integer> matchingResources = new HashMap<Resource, Integer>();
@@ -67,7 +67,7 @@ public class OurAllocateAlgorithm implements AllocationAlgorithm {
 		return matchingResources;
 	}
 	
-	public int getMatchingCoefficient(Map<Resource, Integer> availResources, Map<Resource, Integer> matchingResources) {
+	private int getMatchingCoefficient(Map<Resource, Integer> availResources, Map<Resource, Integer> matchingResources) {
 		int matchingCoefficient = availResources.size() - matchingResources.size();
 
 		Iterator<Entry<Resource, Integer>> itrMatchingResources = matchingResources.entrySet().iterator();
