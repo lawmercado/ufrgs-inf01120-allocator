@@ -88,7 +88,7 @@ public class ExcelIOService implements FileIOService {
             row.createCell(CellInfoWrite.TEACHER.ordinal()).setCellValue(reservation.getLesson().getGroup().getTeacher());
             row.createCell(CellInfoWrite.START_TIME.ordinal()).setCellValue(reservation.getLesson().getBegin().toString());
             row.createCell(CellInfoWrite.DURATION.ordinal()).setCellValue(reservation.getLesson().getDuration().toString());
-            
+                        
             String daysOfWeek = reservation.getLesson().getDaysOfWeek().toString().replace("]", "").replace("[", "");
             
             row.createCell(CellInfoWrite.DAYS_OF_WEEK.ordinal()).setCellValue(daysOfWeek);
@@ -140,7 +140,23 @@ public class ExcelIOService implements FileIOService {
 				for(int i = 0; i < compositeGroups.length; i++) {
 					compositeGroups[i] = compositeGroups[i].trim();
 					
-					this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), compositeGroups[i], lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), lesson.getResources());
+					Map<Resource, Integer> resources = lesson.getResources();
+					
+					List<Group> savedGroups = this.sds.getGroups(lesson.getGroup().getDiscipline().getId());
+					
+					Iterator<Group> itrSavedGroups = savedGroups.iterator(); 
+					
+					while(itrSavedGroups.hasNext()) {
+						Group savedGroup = itrSavedGroups.next();
+						
+						if(savedGroup.getId().equals(compositeGroups[i])) {
+							// Update resource list
+							resources.remove(ScholarResource.PLACES);
+							resources.put(ScholarResource.PLACES, savedGroup.getNumStudents());
+						}
+					}
+					
+					this.sds.insertLesson(lesson.getGroup().getDiscipline().getId(), compositeGroups[i], lesson.getBegin(), lesson.getDuration(), lesson.getDaysOfWeek(), resources);
 				}
 			}
 			else

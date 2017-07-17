@@ -82,6 +82,8 @@ public class ScholarSemestralAllocationService implements AllocationService {
 									this.semesterBegin.plusMonths(6));
 							Allocable local = this.algorithm.run(temporaryLesson, availableClassrooms);
 
+							actualLesson.getResources().put(ScholarResource.PLACES, actualGroup.getNumStudents());
+							
 							if (local != null) {
 								insertAllReservations(local, discipline, actualGroup, actualLesson, semesterBegin);
 							}
